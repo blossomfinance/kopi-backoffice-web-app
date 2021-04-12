@@ -37,6 +37,8 @@ export class CloseClientComponent implements OnInit {
    * @param {Router} router Router
    * @param {SettingsService} settingsService Setting service
    */
+
+  // BUG: closureReasonId is not available
   constructor(private formBuilder: FormBuilder,
     private clientsService: ClientsService,
     private datePipe: DatePipe,
