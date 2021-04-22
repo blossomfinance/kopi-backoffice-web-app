@@ -65,7 +65,7 @@
     <button mat-menu-item [routerLink]="['/accounting']">{{ 'Accounting' | translate }}</button>
     <button mat-menu-item [matMenuTriggerFor]="reportsMenu">{{ 'Reports' | translate }}</button>
     <button mat-menu-item [matMenuTriggerFor]="adminMenu">{{ 'Admin' | translate }}</button>
-    <!-- <button mat-menu-item [matMenuTriggerFor]="selfServiceMenu">{{ 'Self Service' | translate }}</button> -->
+    <button mat-menu-item [matMenuTriggerFor]="selfServiceMenu">{{ 'Self Service' | translate }}</button>
   </span>
 </mat-menu>
 
@@ -89,9 +89,11 @@
 </mat-menu>
 
 <mat-menu #selfServiceMenu="matMenu" [overlapTrigger]="false">
-  <button mat-menu-item [routerLink]="['/self-service/users']">User Management</button>
-  <button mat-menu-item [routerLink]="['/self-service/app-configuration']">App Configuration</button>
-  <button mat-menu-item [routerLink]="['/self-service/task-management']">Task Management</button>
+  <button mat-menu-item [routerLink]="['/self-service/users']">{{ 'User Management' | translate }}</button>
+  <button mat-menu-item [routerLink]="['/self-service/app-configuration']">
+    {{ 'App Configuration' | translate }}
+  </button>
+  <button mat-menu-item [routerLink]="['/self-service/task-management']">{{ 'Task Management' | translate }}</button>
 </mat-menu>
 
 <!-- Application User Help Menu -->
