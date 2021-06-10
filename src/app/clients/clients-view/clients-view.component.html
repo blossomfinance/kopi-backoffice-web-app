@@ -59,7 +59,7 @@
 
     </mat-card-title-group>
 
-    <mat-card-actions class="client-actions">
+    <mat-card-actions fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="10px" class="client-actions">
 
       <span *mifosxHasPermission="'UPDATE_CLIENT'">
         <button mat-raised-button [routerLink]="['edit']">

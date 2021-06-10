@@ -72,7 +72,13 @@ export class CaptureImageDialogComponent implements AfterViewInit, OnDestroy {
   startCamera() {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.enumerateDevices().then(this.selectCamera).catch(this.handleError);
-      navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+      navigator.mediaDevices.getUserMedia({
+        video: {
+          facingMode: "environment",
+          width: 1920,
+          height: 1080
+        }
+      })
         .then((stream: MediaStream) => {
           this.renderer.setProperty(this.video.nativeElement, 'srcObject', stream);
           this.video.nativeElement.play();
