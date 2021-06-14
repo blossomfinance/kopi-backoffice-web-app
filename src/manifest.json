@@ -1,13 +1,14 @@
 {
   "short_name": "Koppi",
-  "name": "Kopi Kantor",
+  "name": "Koppi Kantor",
   "start_url": "/",
   "scope": "/",
   "theme_color": "#fff",
   "background_color": "#fff",
   "display": "standalone",
-  "description": "Koppi Kantor adalah peralatan buat tim koperasi untuk mengelola anggota, menerbitkan pembiayaan, transaksi, dan akunting.",
-  "icons": [{
+  "description": "Koppi Kantor adalah toolbox buat tim koperasi untuk mengelola anggota, menerbitkan pembiayaan, transaksi, dan akuntansi.",
+  "icons": [
+    {
       "src": "/assets/icons/android-icon-36x36.png",
       "sizes": "36x36",
       "type": "image/png",
