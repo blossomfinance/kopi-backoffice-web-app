@@ -14,6 +14,9 @@ import { UploadDocumentDialogComponent } from '../custom-dialogs/upload-document
 import { DeleteDialogComponent } from '../../../shared/delete-dialog/delete-dialog.component';
 import { FormDialogComponent } from 'app/shared/form-dialog/form-dialog.component';
 
+/** Translation Imports */
+import { TranslateService } from '@ngx-translate/core';
+
 /** Custom Services */
 import { ClientsService } from '../../clients.service';
 
@@ -45,8 +48,9 @@ export class IdentitiesTabComponent {
    * @param {ClientsService} clientService Clients Service
    */
   constructor(private route: ActivatedRoute,
-              public dialog: MatDialog,
-              private clientService: ClientsService) {
+    public dialog: MatDialog,
+    private clientService: ClientsService,
+    private translate: TranslateService) {
     this.clientId = this.route.parent.snapshot.paramMap.get('clientId');
     this.route.data.subscribe((data: { clientIdentities: any, clientIdentifierTemplate: any }) => {
       this.clientIdentities = data.clientIdentities;
@@ -73,7 +77,7 @@ export class IdentitiesTabComponent {
     const formfields: FormfieldBase[] = [
       new SelectBase({
         controlName: 'documentTypeId',
-        label: 'Document Type',
+        label: this.translate.instant('Document Type'),
         value: '',
         options: { label: 'name', value: 'id', data: this.clientIdentifierTemplate.allowedDocumentTypes },
         required: true,
@@ -81,7 +85,7 @@ export class IdentitiesTabComponent {
       }),
       new SelectBase({
         controlName: 'status',
-        label: 'Status',
+        label: this.translate.instant('Status'),
         value: '2',
         options: { label: 'value', value: 'value', data: [{ value: 'Active' }, { value: 'Inactive' }] },
         required: true,
@@ -89,7 +93,7 @@ export class IdentitiesTabComponent {
       }),
       new InputBase({
         controlName: 'documentKey',
-        label: 'Unique Id',
+        label: this.translate.instant('Unique ID'),
         value: '',
         type: 'text',
         required: true,
@@ -97,14 +101,14 @@ export class IdentitiesTabComponent {
       }),
       new InputBase({
         controlName: 'description',
-        label: 'Description',
+        label: this.translate.instant('Description'),
         value: '',
         type: 'text',
         order: 4
       })
     ];
     const data = {
-      title: 'Add Client Identifier',
+      title: this.translate.instant('Add Client Identifier'),
       formfields: formfields
     };
     const addIdentifierDialogRef = this.dialog.open(FormDialogComponent, { data });
