@@ -1,6 +1,7 @@
 /** Angular Imports */
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { compact } from 'lodash';
 
 /** rxjs Imports */
 import { finalize } from 'rxjs/operators';
@@ -50,12 +51,17 @@ export class LoginFormComponent implements OnInit {
     this.loginForm.disable();
     this.authenticationService.login(this.loginForm.value)
       .pipe(finalize(() => {
-        this.loginForm.reset();
+        // this.loginForm.reset();
         this.loginForm.markAsPristine();
         // Angular Material Bug: Validation errors won't get removed on reset.
         this.loginForm.enable();
         this.loading = false;
       })).subscribe();
+  }
+
+  showPassword() {
+    if (this.passwordInputType == 'password') this.passwordInputType = 'text';
+    else this.passwordInputType = 'password';
   }
 
   /**
