@@ -14,7 +14,7 @@ export class SearchPageComponent {
 
   /** Search Results */
   searchResults: any;
-  /** Flags if number of search results is 0 or exceed 200 */
+  /** Flags if number of search results is 0 or exceed 100 */
   notFound: boolean;
   overload: boolean;
 
@@ -26,10 +26,11 @@ export class SearchPageComponent {
     private router: Router) {
     this.route.data.subscribe((data: { searchResults: any }) => {
       this.searchResults = data.searchResults;
+      console.debug(this.searchResults);
       this.notFound = this.searchResults.length < 1 ? true : false;
-      this.overload = this.searchResults.length > 200 ? true : false;
+      this.overload = this.searchResults.length > 100 ? true : false;
       if (this.overload) {
-        this.searchResults = this.searchResults.slice(0, 200);
+        this.searchResults = this.searchResults.slice(0, 100);
       }
     });
   }
@@ -39,26 +40,7 @@ export class SearchPageComponent {
    * @param {any} entity Entity
    */
   navigate(entity: any) {
-    switch (entity.entityType) {
-      case 'CLIENT':
-        this.router.navigate(['clients', entity.entityId]);
-        break;
-      case 'CENTER':
-        this.router.navigate(['centers', entity.entityId]);
-        break;
-      case 'GROUP':
-        this.router.navigate(['groups', entity.entityId]);
-        break;
-      case 'SHARE':
-        this.router.navigate(['clients', entity.parentId, 'shares-accounts', entity.entityId]);
-        break;
-      case 'SAVING':
-        this.router.navigate(['clients', entity.parentId, 'savings-accounts', entity.entityId]);
-        break;
-      case 'LOAN':
-        this.router.navigate(['clients', entity.parentId, 'loans-accounts', entity.entityId]);
-        break;
-    }
+    this.router.navigate(['clients', entity.id]);
   }
 
 }

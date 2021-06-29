@@ -26,7 +26,7 @@ import { FormControl } from '@angular/forms';
 export class SearchToolComponent {
 
   /** Query Form Control */
-  query = new FormControl('');
+  search = new FormControl('');
   /** Resource Form Control */
   resource = new FormControl('');
 
@@ -79,9 +79,9 @@ export class SearchToolComponent {
   /**
    * Searches server for query and resource.
    */
-  search() {
+  getSearch() {
     const queryParams: any = {
-      query: this.query.value,
+      search: this.search.value,
       resource: this.resource.value
     };
     this.router.navigate(['/search'], { queryParams: queryParams });
