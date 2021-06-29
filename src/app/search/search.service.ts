@@ -26,9 +26,9 @@ export class SearchService {
   getSearchResults(query: string, resource: string): Observable<any> {
     const httpParams = new HttpParams()
       .set('exactMatch', 'false')
-      .set('query', query)
+      .set('search', query)
       .set('resource', resource);
-    return this.http.get('/search', { params: httpParams });
+    return this.http.get('https://koppi-search.herokuapp.com', { params: httpParams });
   }
 
 }
