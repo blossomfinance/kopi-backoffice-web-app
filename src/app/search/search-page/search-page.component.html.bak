@@ -13,14 +13,12 @@
     <mat-list>
 
       <mat-list-item (click)="navigate(entity)" *ngFor="let entity of searchResults">
-        <h3 matLine><span class="link">{{ entity.fullname }}</span> </h3>
+        <h3 matLine><span class="link">{{ entity.entityName }}</span> | #{{ entity.entityAccountNo }}</h3>
         <p matLine>
           <span>
-            {{ 'Entity' | translate }}: {{ 'Client' | translate }}
-            | {{ 'Office' | translate }}: {{ entity.office_id }} | {{ 'Staff' | translate }}: {{ entity.staff_id }}
-            <br>
-            {{ 'Address' | translate }} |
-            {{ entity.addresses.length ? entity.addresses[0].address.address_line_1 : 'Belum Ada Alamat' }}
+            {{ 'Entity' | translate }}: {{ entity.entityType }}
+            | {{ (['CLIENT','GROUP', 'CENTER'].includes(entity.entityType) ? 'Office' : 'Client') | translate }}: {{
+            entity.parentName }}
           </span>
         </p>
       </mat-list-item>

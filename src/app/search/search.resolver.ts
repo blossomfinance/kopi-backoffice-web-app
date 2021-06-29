@@ -17,7 +17,7 @@ export class SearchResolver implements Resolve<Object> {
   /**
    * @param {SearchService} searchService Notifications service.
    */
-  constructor(private searchService: SearchService) {}
+  constructor(private searchService: SearchService) { }
 
   /**
    * Returns the Search Resultsdata.
@@ -25,9 +25,9 @@ export class SearchResolver implements Resolve<Object> {
    * @returns {Observable<any>}
    */
   resolve(route: ActivatedRouteSnapshot): Observable<any> {
-    const query = route.queryParams['query'];
+    const search = route.queryParams['search'];
     const resource = route.queryParams['resource'];
-    return this.searchService.getSearchResults(query, resource);
+    return this.searchService.getSearchResults(search, resource);
   }
 
 }
