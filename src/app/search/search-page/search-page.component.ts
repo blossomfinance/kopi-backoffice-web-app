@@ -26,7 +26,6 @@ export class SearchPageComponent {
     private router: Router) {
     this.route.data.subscribe((data: { searchResults: any }) => {
       this.searchResults = data.searchResults;
-      console.debug(this.searchResults);
       this.notFound = this.searchResults.length < 1 ? true : false;
       this.overload = this.searchResults.length > 100 ? true : false;
       if (this.overload) {

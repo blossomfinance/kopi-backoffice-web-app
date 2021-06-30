@@ -29,11 +29,11 @@ export class ClientsComponent implements OnInit, AfterViewInit {
   @HostListener('window:resize', ['$event'])
   getScreenSize() {
     if (window.innerWidth < 500) {
+      // Only show these columns for smaller screens
       this.displayedColumns = ['name', 'externalid', 'status', 'staff'];
-      console.debug('Mobile View');
     } else {
+      // Show all columns for larger screens
       this.displayedColumns = ['name', 'clientno', 'externalid', 'status', 'mobileNo', 'gender', 'office', 'staff'];
-      console.debug('Desktop View');
     }
   }
 
