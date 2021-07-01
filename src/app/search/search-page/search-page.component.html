@@ -2,6 +2,10 @@
 
   <mat-card fxLayout="column" fxLayoutGap="2%">
 
+    <div id="search-tool">
+      <mifosx-search-tool [searchVisible]="true" [iconVisible]="false"></mifosx-search-tool>
+    </div>
+
     <mat-error *ngIf="notFound">
       {{ 'No results is found. Try to modify your query.' | translate }}
     </mat-error>
