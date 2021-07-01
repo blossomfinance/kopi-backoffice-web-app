@@ -41,7 +41,6 @@ export class SearchService {
       .set('search', search)
       .set('resource', resource)
       .set('exactMatch', 'false');
-    console.debug('Search headers', headers);
     return this.http.get('https://koppi-search.herokuapp.com/', { headers, params });
   }
 
