@@ -10,67 +10,71 @@
         <div fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column">
 
           <mat-form-field fxFlex="88%">
-            <mat-label>Office</mat-label>
+            <mat-label>{{ 'Office' | translate }}</mat-label>
             <mat-select required formControlName="officeId">
               <mat-option *ngFor="let office of officeData" [value]="office.id">
                 {{ office.name }}
               </mat-option>
             </mat-select>
             <mat-error *ngIf="openingBalancesForm.controls.officeId.hasError('required')">
-              Office is <strong>required</strong>
+              {{ 'Office' | translate }} <strong>{{ 'is required' | translate }}</strong>
             </mat-error>
           </mat-form-field>
 
-          <button mat-button type="button" color="primary" fxFlex="8%" (click)="retrieveOpeningBalances()">Retrieve</button>
+          <button mat-button type="button" color="primary" fxFlex="8%" (click)="retrieveOpeningBalances()">{{ 'Retrieve'
+            | translate }}</button>
 
         </div>
 
         <div fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column" *ngIf="openingBalancesData">
 
-          <label fxFlex="98%" class="content"><span class="header">Opening Balances Contra Account:</span>&nbsp;&nbsp;{{ openingBalancesData.contraAccount.name + ' (' + openingBalancesData.contraAccount.glCode + ')' }}</label>
+          <label fxFlex="98%" class="content"><span class="header">{{ 'Office' | translate }}Opening Balances Contra
+              {{ 'Account' | translate }}:</span>&nbsp;&nbsp;{{ openingBalancesData.contraAccount.name + ' (' +
+            openingBalancesData.contraAccount.glCode + ')' }}</label>
 
           <mat-form-field fxFlex="48%">
-            <mat-label>Currency</mat-label>
+            <mat-label>{{ 'Currency' | translate }}</mat-label>
             <mat-select required formControlName="currencyCode">
               <mat-option *ngFor="let currency of currencyData" [value]="currency.code">
                 {{ currency.displayLabel }}
               </mat-option>
             </mat-select>
             <mat-error *ngIf="openingBalancesForm.controls.currencyCode.hasError('required')">
-              Currency is <strong>required</strong>
+              {{ 'Currency' | translate }} <strong>{{ 'is required' | translate }}</strong>
             </mat-error>
           </mat-form-field>
 
           <mat-form-field fxFlex="48%">
-            <mat-label>Opening Balances Date</mat-label>
-            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="openingBalancesDatePicker" required formControlName="transactionDate">
+            <mat-label>{{ 'Opening Balances Date' | translate }}</mat-label>
+            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="openingBalancesDatePicker" required
+              formControlName="transactionDate">
             <mat-datepicker-toggle matSuffix [for]="openingBalancesDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #openingBalancesDatePicker></mat-datepicker>
             <mat-error *ngIf="openingBalancesForm.controls.transactionDate.hasError('required')">
-              Opening Balances Date is <strong>required</strong>
+              {{ 'Opening Balances Date' | translate }} <strong>{{ 'is required' | translate }}</strong>
             </mat-error>
           </mat-form-field>
 
           <div fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column" class="content" fxFlex="100%">
 
             <div class="header" fxFlex="8%">
-              Type
+              {{ 'Type' | translate }}
             </div>
 
             <div class="header" fxFlex="18%">
-              GL Code
+              {{ 'GL Code' | translate }}
             </div>
 
             <div class="header" fxFlex="18%">
-              Account
+              {{ 'Account' | translate }}
             </div>
 
             <div class="header" fxFlex="23%">
-              Total Debit: {{ debitsSum }}
+              {{ 'Total Debit' | translate }}: {{ debitsSum }}
             </div>
 
             <div class="header" fxFlex="23%">
-              Total Credit: {{ creditsSum }}
+              {{ 'Total Credit' | translate }}: {{ creditsSum }}
             </div>
 
           </div>
@@ -81,7 +85,9 @@
             <div fxFlexFill fxLayout="row wrap" fxLayoutGap="2%" fxLayout.lt-md="column" [formGroupName]="i">
 
               <div fxFlex="8%" class="p-t-30">
-                {{ (openingBalancesData.glAccounts[i].glAccountType.value !== openingBalancesData.glAccounts[i-1]?.glAccountType.value) ? openingBalancesData.glAccounts[i].glAccountType.value : '' }}
+                {{ (openingBalancesData.glAccounts[i].glAccountType.value !==
+                openingBalancesData.glAccounts[i-1]?.glAccountType.value) ?
+                openingBalancesData.glAccounts[i].glAccountType.value : '' }}
               </div>
 
               <div fxFlex="18%" class="p-t-30">
@@ -94,14 +100,14 @@
 
               <div fxFlex="23%">
                 <mat-form-field>
-                  <mat-label>Debit</mat-label>
+                  <mat-label>{{ 'Debit' | translate }}</mat-label>
                   <input matInput type="number" formControlName="debit">
                 </mat-form-field>
               </div>
 
               <div fxFlex="23%">
                 <mat-form-field>
-                  <mat-label>Credit</mat-label>
+                  <mat-label>{{ 'Credit' | translate }}</mat-label>
                   <input matInput type="number" formControlName="credit">
                 </mat-form-field>
               </div>
@@ -114,9 +120,11 @@
 
       </mat-card-content>
 
-      <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px" *ngIf="openingBalancesData">
-        <button type="button" mat-raised-button [routerLink]="['../']">Cancel</button>
-        <button mat-raised-button color="primary" [disabled]="!openingBalancesForm.valid" *mifosxHasPermission="'DEFINEOPENINGBALANCE_JOURNALENTRY'">Submit</button>
+      <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px"
+        *ngIf="openingBalancesData">
+        <button type="button" mat-raised-button [routerLink]="['../']">{{ 'Cancel' | translate }}</button>
+        <button mat-raised-button color="primary" [disabled]="!openingBalancesForm.valid"
+          *mifosxHasPermission="'DEFINEOPENINGBALANCE_JOURNALENTRY'">{{ 'Submit' | translate }}</button>
       </mat-card-actions>
 
     </form>
