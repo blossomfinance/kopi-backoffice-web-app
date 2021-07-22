@@ -21,14 +21,14 @@
           </mat-form-field>
 
           <mat-form-field fxFlex="48%">
-            <mat-label>Currency{{ 'Office' | translate }}</mat-label>
+            <mat-label>{{ 'Currency' | translate }}</mat-label>
             <mat-select required formControlName="currencyCode">
               <mat-option *ngFor="let currency of currencyData" [value]="currency.code">
                 {{ currency.displayLabel }}
               </mat-option>
             </mat-select>
             <mat-error *ngIf="journalEntryForm.controls.currencyCode.hasError('required')">
-              Currency is <strong>{{ 'is required' | translate }}</strong>
+              {{ 'Currency' | translate }} <strong>{{ 'is required' | translate }}</strong>
             </mat-error>
           </mat-form-field>
 

@@ -1,7 +1,8 @@
 <div class="container m-b-20" fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
-  <button mat-raised-button color="primary" [routerLink]="['create']" *mifosxHasPermission="'VIEW_ALL_PROVISIONING_ENTRIES'">
+  <button mat-raised-button color="primary" [routerLink]="['create']"
+    *mifosxHasPermission="'VIEW_ALL_PROVISIONING_ENTRIES'">
     <fa-icon icon="plus"></fa-icon>&nbsp;&nbsp;
-    Create Provisioning Entry
+    {{ 'Create Provisioning Entry' | translate }}
   </button>
 </div>
 
@@ -9,7 +10,7 @@
 
   <div fxLayout="row">
     <mat-form-field fxFlex>
-      <mat-label>Filter</mat-label>
+      <mat-label>{{ 'Filter' | translate }}</mat-label>
       <input matInput (keyup)="applyFilter($event.target.value)">
     </mat-form-field>
   </div>
@@ -19,45 +20,47 @@
     <table mat-table [dataSource]="dataSource" matSort>
 
       <ng-container matColumnDef="createdUser">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Created By </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Created By' | translate }} </th>
         <td mat-cell *matCellDef="let provisioningEntry"> {{ provisioningEntry.createdUser }} </td>
       </ng-container>
 
       <ng-container matColumnDef="createdDate">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Created On </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Created On' | translate }} </th>
         <td mat-cell *matCellDef="let provisioningEntry"> {{ provisioningEntry.createdDate }} </td>
       </ng-container>
 
       <ng-container matColumnDef="journalEntry">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Journal Entry Created </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Journal Entry Created' | translate }} </th>
         <td mat-cell *matCellDef="let provisioningEntry">
           <mat-checkbox [disabled]="true" [checked]="provisioningEntry.journalEntry"></mat-checkbox>
         </td>
       </ng-container>
 
       <ng-container matColumnDef="viewReport">
-        <th mat-header-cell *matHeaderCellDef> View Report </th>
+        <th mat-header-cell *matHeaderCellDef> {{ 'View Report' | translate }} </th>
         <td mat-cell *matCellDef="let provisioningEntry">
           <button mat-button color="primary" [routerLink]="['view', provisioningEntry.id]">
-            <fa-icon icon="eye"></fa-icon>&nbsp;&nbsp;View
+            <fa-icon icon="eye"></fa-icon>&nbsp;&nbsp;{{ 'View' | translate }}
           </button>
         </td>
       </ng-container>
 
       <ng-container matColumnDef="recreateProvisioning">
-        <th mat-header-cell *matHeaderCellDef> Recreate Provisioning </th>
+        <th mat-header-cell *matHeaderCellDef> {{ 'Recreate Provisioning' | translate }} </th>
         <td mat-cell *matCellDef="let provisioningEntry">
-          <button mat-button (click)="recreateProvisioning($event, provisioningEntry.id)" [disabled]="provisioningEntry.journalEntry" color="primary">
-            <fa-icon icon="edit"></fa-icon>&nbsp;&nbsp;Recreate
+          <button mat-button (click)="recreateProvisioning($event, provisioningEntry.id)"
+            [disabled]="provisioningEntry.journalEntry" color="primary">
+            <fa-icon icon="edit"></fa-icon>&nbsp;&nbsp;{{ 'Recreate' | translate }}
           </button>
         </td>
       </ng-container>
 
       <ng-container matColumnDef="viewJournalEntry">
-        <th mat-header-cell *matHeaderCellDef> View Journal Entry </th>
+        <th mat-header-cell *matHeaderCellDef> {{ 'View Journal Entry' | translate }} </th>
         <td mat-cell *matCellDef="let provisioningEntry">
-          <button mat-button (click)="viewJournalEntry($event, provisioningEntry.id)" [disabled]="!provisioningEntry.journalEntry" color="primary">
-            <fa-icon icon="eye"></fa-icon>&nbsp;&nbsp;View
+          <button mat-button (click)="viewJournalEntry($event, provisioningEntry.id)"
+            [disabled]="!provisioningEntry.journalEntry" color="primary">
+            <fa-icon icon="eye"></fa-icon>&nbsp;&nbsp;{{ 'View' | translate }}
           </button>
         </td>
       </ng-container>
