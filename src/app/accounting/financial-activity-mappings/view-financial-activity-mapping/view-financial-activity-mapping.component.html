@@ -1,11 +1,13 @@
 <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="2%" class="container m-b-20">
-  <button mat-raised-button color="primary" [routerLink]="['edit']" *mifosxHasPermission="'UPDATE_FINANCIALACTIVITYACCOUNT'">
+  <button mat-raised-button color="primary" [routerLink]="['edit']"
+    *mifosxHasPermission="'UPDATE_FINANCIALACTIVITYACCOUNT'">
     <fa-icon icon="edit"></fa-icon>&nbsp;&nbsp;
-    Edit
+    {{ 'Edit' | translate }}
   </button>
-  <button mat-raised-button color="warn" (click)="deleteFinancialActivityAccount()" *mifosxHasPermission="'DELETE_FINANCIALACTIVITYACCOUNT'">
+  <button mat-raised-button color="warn" (click)="deleteFinancialActivityAccount()"
+    *mifosxHasPermission="'DELETE_FINANCIALACTIVITYACCOUNT'">
     <fa-icon icon="trash"></fa-icon>&nbsp;&nbsp;
-    Delete
+    {{ 'Delete' | translate }}
   </button>
 </div>
 
@@ -18,7 +20,7 @@
       <div fxLayout="row wrap" class="content">
 
         <div fxFlex="50%" class="header">
-          Financial Activity
+          {{ 'Financial Activity' | translate }}
         </div>
 
         <div fxFlex="50%">
@@ -26,7 +28,7 @@
         </div>
 
         <div fxFlex="50%" class="header">
-          Account Name
+          {{ 'Account Name' | translate }}
         </div>
 
         <div fxFlex="50%">
