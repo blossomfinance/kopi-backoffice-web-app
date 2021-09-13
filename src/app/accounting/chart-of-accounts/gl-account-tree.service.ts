@@ -25,7 +25,7 @@ export class GlAccountTreeService {
    */
   get treeData(): GLAccountNode[] { return this.treeDataChange.value; }
 
-  constructor() {  }
+  constructor() { }
 
   /**
    * Builds the chart of accounts tree and emits the value.
@@ -71,7 +71,7 @@ export class GlAccountTreeService {
     // Construct gl account tree by adding all nodes belonging to headers (with parent id = 0) by their type,
     // and rest as children to respective parent nodes.
     for (const glAccount of glAccountData) {
-      if (glAccount.parentId === 0) {
+      if (!glAccount.parentId) {
         if (glAccount.type.value === 'ASSET') {
           glAccountTree[0].children[0].children.push(glAccounts[glAccount.id]);
         } else if (glAccount.type.value === 'EQUITY') {
@@ -87,6 +87,7 @@ export class GlAccountTreeService {
         glAccounts[glAccount.parentId].children.push(glAccounts[glAccount.id]);
       }
     }
+    console.debug("glAccountTree", glAccountTree);
 
     return glAccountTree;
   }
