@@ -45,17 +45,17 @@ export class GlAccountTreeService {
     const glAccountTree: GLAccountNode[] = [];
 
     // Header nodes
-    glAccountTree.push(new GLAccountNode('GL ACCOUNTS'));
-    glAccountTree[0].children.push(new GLAccountNode('ASSET'));
-    glAccountTree[0].children.push(new GLAccountNode('EQUITY'));
-    glAccountTree[0].children.push(new GLAccountNode('EXPENSE'));
-    glAccountTree[0].children.push(new GLAccountNode('INCOME'));
-    glAccountTree[0].children.push(new GLAccountNode('LIABILITY'));
+    glAccountTree.push(new GLAccountNode('GENERAL LEDGER'));
+    glAccountTree[0].children.push(new GLAccountNode('ASSET (HARTA)'));
+    glAccountTree[0].children.push(new GLAccountNode('LIABILITY (KEWAJIBAN)'));
+    glAccountTree[0].children.push(new GLAccountNode('EQUITY (MODAL)'));
+    glAccountTree[0].children.push(new GLAccountNode('EXPENSE (BIAYA)'));
+    glAccountTree[0].children.push(new GLAccountNode('INCOME (PENDAPATAN)'));
 
     // Sort by parent id (so that child nodes can be added properly)
     glAccountData.sort((glAccountOne: any, glAccountTwo: any) => {
       if (!glAccountOne.parentId) {
-        glAccountOne.parentId = 0;
+        glAccountOne['parentId'] = 0;
       }
       return glAccountOne.parentId - glAccountTwo.parentId;
     });
@@ -74,13 +74,13 @@ export class GlAccountTreeService {
       if (!glAccount.parentId) {
         if (glAccount.type.value === 'ASSET') {
           glAccountTree[0].children[0].children.push(glAccounts[glAccount.id]);
-        } else if (glAccount.type.value === 'EQUITY') {
-          glAccountTree[0].children[1].children.push(glAccounts[glAccount.id]);
-        } else if (glAccount.type.value === 'EXPENSE') {
-          glAccountTree[0].children[2].children.push(glAccounts[glAccount.id]);
-        } else if (glAccount.type.value === 'INCOME') {
-          glAccountTree[0].children[3].children.push(glAccounts[glAccount.id]);
         } else if (glAccount.type.value === 'LIABILITY') {
+          glAccountTree[0].children[1].children.push(glAccounts[glAccount.id]);
+        } else if (glAccount.type.value === 'EQUITY') {
+          glAccountTree[0].children[2].children.push(glAccounts[glAccount.id]);
+        } else if (glAccount.type.value === 'EXPENSE') {
+          glAccountTree[0].children[3].children.push(glAccounts[glAccount.id]);
+        } else if (glAccount.type.value === 'INCOME') {
           glAccountTree[0].children[4].children.push(glAccounts[glAccount.id]);
         }
       } else {
