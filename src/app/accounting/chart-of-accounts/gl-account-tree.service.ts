@@ -49,8 +49,8 @@ export class GlAccountTreeService {
     glAccountTree[0].children.push(new GLAccountNode('ASSET (HARTA)'));
     glAccountTree[0].children.push(new GLAccountNode('LIABILITY (KEWAJIBAN)'));
     glAccountTree[0].children.push(new GLAccountNode('EQUITY (MODAL)'));
-    glAccountTree[0].children.push(new GLAccountNode('EXPENSE (BIAYA)'));
     glAccountTree[0].children.push(new GLAccountNode('INCOME (PENDAPATAN)'));
+    glAccountTree[0].children.push(new GLAccountNode('EXPENSE (BIAYA)'));
 
     // Sort by parent id (so that child nodes can be added properly)
     glAccountData.sort((glAccountOne: any, glAccountTwo: any) => {
@@ -78,9 +78,9 @@ export class GlAccountTreeService {
           glAccountTree[0].children[1].children.push(glAccounts[glAccount.id]);
         } else if (glAccount.type.value === 'EQUITY') {
           glAccountTree[0].children[2].children.push(glAccounts[glAccount.id]);
-        } else if (glAccount.type.value === 'EXPENSE') {
-          glAccountTree[0].children[3].children.push(glAccounts[glAccount.id]);
         } else if (glAccount.type.value === 'INCOME') {
+          glAccountTree[0].children[3].children.push(glAccounts[glAccount.id]);
+        } else if (glAccount.type.value === 'EXPENSE') {
           glAccountTree[0].children[4].children.push(glAccounts[glAccount.id]);
         }
       } else {

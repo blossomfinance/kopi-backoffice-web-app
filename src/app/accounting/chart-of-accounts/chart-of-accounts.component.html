@@ -89,10 +89,10 @@
   <div class="m-b-20" fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
     <button mat-raised-button (click)="nestedTreeControl.expandAll()">
       <!-- Bug(angular-material): https://github.com/angular/material2/issues/12170 -->
-      Expand All
+      {{ 'Expand All' | translate }}
     </button>
     <button mat-raised-button (click)="nestedTreeControl.collapseAll()">
-      Collapse All
+      {{ 'Collapse All' | translate }}
     </button>
   </div>
 
