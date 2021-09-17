@@ -30,7 +30,7 @@ export class ShareProductCurrencyStepComponent implements OnInit {
     } else {
       this.shareProductCurrencyForm.patchValue({
         'currencyCode': this.currencyData[0].code,
-        'digitsAfterDecimal': 2
+        'digitsAfterDecimal': 0
       });
     }
   }
