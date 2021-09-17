@@ -24,7 +24,7 @@
 
     <mat-step [stepControl]="savingProductDetailsForm">
 
-      <ng-template matStepLabel>DETAILS</ng-template>
+      <ng-template matStepLabel>{{ 'DETAILS' | translate }}</ng-template>
 
       <mifosx-saving-product-details-step></mifosx-saving-product-details-step>
 
@@ -32,65 +32,60 @@
 
     <mat-step [stepControl]="savingProductCurrencyForm">
 
-      <ng-template matStepLabel>CURRENCY</ng-template>
+      <ng-template matStepLabel>{{ 'CURRENCY' | translate }}</ng-template>
 
-      <mifosx-saving-product-currency-step [savingProductsTemplate]="savingProductsTemplate"></mifosx-saving-product-currency-step>
+      <mifosx-saving-product-currency-step [savingProductsTemplate]="savingProductsTemplate">
+      </mifosx-saving-product-currency-step>
 
     </mat-step>
 
     <mat-step [stepControl]="savingProductTermsForm">
 
-      <ng-template matStepLabel>TERMS</ng-template>
+      <ng-template matStepLabel>{{ 'TERMS' | translate }}</ng-template>
 
-      <mifosx-saving-product-terms-step [savingProductsTemplate]="savingProductsTemplate"></mifosx-saving-product-terms-step>
+      <mifosx-saving-product-terms-step [savingProductsTemplate]="savingProductsTemplate">
+      </mifosx-saving-product-terms-step>
 
     </mat-step>
 
     <mat-step [stepControl]="savingProductSettingsForm">
 
-      <ng-template matStepLabel>SETTINGS</ng-template>
+      <ng-template matStepLabel>{{ 'SETTINGS' | translate }}</ng-template>
 
-      <mifosx-saving-product-settings-step [savingProductsTemplate]="savingProductsTemplate"></mifosx-saving-product-settings-step>
+      <mifosx-saving-product-settings-step [savingProductsTemplate]="savingProductsTemplate">
+      </mifosx-saving-product-settings-step>
 
     </mat-step>
 
     <mat-step>
 
-      <ng-template matStepLabel>CHARGES</ng-template>
+      <ng-template matStepLabel>{{ 'CHARGES' | translate }}</ng-template>
 
-      <mifosx-saving-product-charges-step
-        [savingProductsTemplate]="savingProductsTemplate"
-        [currencyCode]="savingProductCurrencyForm.get('currencyCode')"
-      >
+      <mifosx-saving-product-charges-step [savingProductsTemplate]="savingProductsTemplate"
+        [currencyCode]="savingProductCurrencyForm.get('currencyCode')">
       </mifosx-saving-product-charges-step>
 
     </mat-step>
 
     <mat-step [stepControl]="savingProductAccountingForm">
 
-      <ng-template matStepLabel>ACCOUNTING</ng-template>
+      <ng-template matStepLabel>{{ 'ACCOUNTING' | translate }}</ng-template>
 
-      <mifosx-saving-product-accounting-step
-        [savingProductsTemplate]="savingProductsTemplate"
+      <mifosx-saving-product-accounting-step [savingProductsTemplate]="savingProductsTemplate"
         [accountingRuleData]="accountingRuleData"
         [isDormancyTrackingActive]="savingProductSettingsForm.get('isDormancyTrackingActive')"
-        [savingProductFormValid]="savingProductFormValid"
-      >
+        [savingProductFormValid]="savingProductFormValid">
       </mifosx-saving-product-accounting-step>
 
     </mat-step>
 
     <mat-step state="preview" *ngIf="savingProductFormValid" completed>
 
-      <ng-template matStepLabel>PREVIEW</ng-template>
+      <ng-template matStepLabel>{{ 'PREVIEW' | translate }}</ng-template>
 
-      <mifosx-saving-product-preview-step
-        [savingProductsTemplate]="savingProductsTemplate"
-        [accountingRuleData]="accountingRuleData"
-        [savingProduct]="savingProduct"
-        [taskPermission]='"CREATE_SAVINGSPRODUCT"'
-        (submit)="submit()"
-      >
+      <mifosx-saving-product-preview-step [savingProductsTemplate]="savingProductsTemplate"
+        [accountingRuleData]="accountingRuleData" [savingProduct]="savingProduct"
+        [taskPermission]='"CREATE_SAVINGSPRODUCT"' (submit)="submit()">
       </mifosx-saving-product-preview-step>
 
     </mat-step>
