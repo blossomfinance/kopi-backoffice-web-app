@@ -30,7 +30,7 @@ export class FixedDepositProductCurrencyStepComponent implements OnInit {
     } else {
       this.fixedDepositProductCurrencyForm.patchValue({
         'currencyCode': this.currencyData[0].code,
-        'digitsAfterDecimal': 2
+        'digitsAfterDecimal': 0
       });
     }
   }

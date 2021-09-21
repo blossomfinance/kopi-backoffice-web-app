@@ -49,10 +49,10 @@ export class SavingsAccountTransactionsComponent implements OnInit {
    * @param {Router} router Router for navigation.
    */
   constructor(private formBuilder: FormBuilder,
-              private route: ActivatedRoute,
-              private router: Router,
-              private datePipe: DatePipe,
-              private savingsService: SavingsService) {
+    private route: ActivatedRoute,
+    private router: Router,
+    private datePipe: DatePipe,
+    private savingsService: SavingsService) {
     this.route.data.subscribe((data: { savingsAccountActionData: any }) => {
       this.paymentTypeOptions = data.savingsAccountActionData.paymentTypeOptions;
     });

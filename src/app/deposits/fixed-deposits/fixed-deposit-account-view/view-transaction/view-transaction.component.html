@@ -7,15 +7,15 @@
       <div fxLayout="row wrap" class="content">
 
         <div fxFlex="50%" class="mat-body-strong">
-          Transaction Id
+          {{ 'Transaction ID' | translate }}
         </div>
 
         <div fxFlex="50%">
           {{ transactionData.id }}
         </div>
-        
+
         <div fxFlex="50%" class="mat-body-strong">
-          Type
+          {{ 'Type' | translate }}
         </div>
 
         <div fxFlex="50%">
@@ -23,7 +23,7 @@
         </div>
 
         <div fxFlex="50%" class="mat-body-strong">
-          Transaction Date
+          {{ 'Transaction Date' | translate }}
         </div>
 
         <div fxFlex="50%">
@@ -31,7 +31,7 @@
         </div>
 
         <div fxFlex="50%" class="mat-body-strong">
-          Currency
+          {{ 'Currency' | translate }}
         </div>
 
         <div fxFlex="50%">
@@ -39,7 +39,7 @@
         </div>
 
         <div fxFlex="50%" class="mat-body-strong">
-          Amount
+          {{ 'Amount' | translate }}
         </div>
 
         <div fxFlex="50%">
@@ -47,7 +47,7 @@
         </div>
 
         <div fxFlex="50%" *ngIf="transactionData.note" class="mat-body-strong">
-          Note
+          {{ 'Note' | translate }}
         </div>
 
         <div fxFlex="50%" *ngIf="transactionData.note">
@@ -57,49 +57,49 @@
         <ng-container *ngIf="transactionData.paymentDetailData">
 
           <div *ngIf="transactionData.paymentDetailData.paymentType" fxFlex="50%" class="mat-body-strong">
-            Payment Type
+            {{ 'Payment Type' | translate }}
           </div>
-  
+
           <div *ngIf="transactionData.paymentDetailData.paymentType" fxFlex="50%">
             {{ transactionData.paymentDetailData.paymentType.name }}
           </div>
-          
+
           <div *ngIf="transactionData.paymentDetailData.accountNumber" fxFlex="50%" class="mat-body-strong">
-            Account No.
+            {{ 'Account Number' | translate }}
           </div>
-  
+
           <div *ngIf="transactionData.paymentDetailData.accountNumber" fxFlex="50%">
             {{ transactionData.paymentDetailData.accountNumber }}
           </div>
-  
+
           <div *ngIf="transactionData.paymentDetailData.checkNumber" fxFlex="50%" class="mat-body-strong">
-            Cheque Number
+            {{ 'Cheque Number' | translate }}
           </div>
-  
+
           <div *ngIf="transactionData.paymentDetailData.checkNumber" fxFlex="50%">
             {{ transactionData.paymentDetailData.checkNumber }}
           </div>
-  
+
           <div *ngIf="transactionData.paymentDetailData.routingCode" fxFlex="50%" class="mat-body-strong">
-            Routing Code
+            {{ 'Routing Code' | translate }}
           </div>
-  
+
           <div *ngIf="transactionData.paymentDetailData.routingCode" fxFlex="50%">
             {{ transactionData.paymentDetailData.routingCode }}
           </div>
-  
+
           <div *ngIf="transactionData.paymentDetailData.receiptNumber" fxFlex="50%" class="mat-body-strong">
-            Receipt No.
+            {{ 'Receipt Number' | translate }}
           </div>
-  
+
           <div *ngIf="transactionData.paymentDetailData.receiptNumber" fxFlex="50%">
             {{ transactionData.paymentDetailData.receiptNumber }}
           </div>
-  
+
           <div *ngIf="transactionData.paymentDetailData.bankNumber" fxFlex="50%" class="mat-body-strong">
-            Bank No.
+            {{ 'Bank Number' | translate }}
           </div>
-  
+
           <div *ngIf="transactionData.paymentDetailData.bankNumber" fxFlex="50%">
             {{ transactionData.paymentDetailData.bankNumber }}
           </div>

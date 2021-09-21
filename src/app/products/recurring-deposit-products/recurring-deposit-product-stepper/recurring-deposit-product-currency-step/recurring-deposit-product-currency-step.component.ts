@@ -29,7 +29,7 @@ export class RecurringDepositProductCurrencyStepComponent implements OnInit {
     } else {
       this.recurringDepositProductCurrencyForm.patchValue({
         'currencyCode': this.currencyData[0].code,
-        'digitsAfterDecimal': 2
+        'digitsAfterDecimal': 0
       });
     }
 

@@ -169,7 +169,7 @@
       <ng-container matColumnDef="repaymentsEvery">
         <th mat-header-cell *matHeaderCellDef> {{ 'Repayments Every' | translate }} </th>
         <td mat-cell *matCellDef="let charge">
-          {{ charge.feeInterval || 'Not Provided' }}
+          {{ charge.feeInterval || ( 'Not Provided' | translate )}}
         </td>
       </ng-container>
 

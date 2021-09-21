@@ -28,7 +28,7 @@ export class SavingProductTermsStepComponent implements OnInit {
     this.interestCalculationDaysInYearTypeData = this.savingProductsTemplate.interestCalculationDaysInYearTypeOptions;
 
     this.savingProductTermsForm.patchValue({
-      'nominalAnnualInterestRate': this.savingProductsTemplate.nominalAnnualInterestRate,
+      'nominalAnnualInterestRate': this.savingProductsTemplate.nominalAnnualInterestRate ? this.savingProductsTemplate.nominalAnnualInterestRate : 0,
       'interestCompoundingPeriodType': this.savingProductsTemplate.interestCompoundingPeriodType.id,
       'interestPostingPeriodType': this.savingProductsTemplate.interestPostingPeriodType.id,
       'interestCalculationType': this.savingProductsTemplate.interestCalculationType.id,

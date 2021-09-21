@@ -23,8 +23,8 @@ export class SavingProductCurrencyStepComponent implements OnInit {
 
     this.savingProductCurrencyForm.patchValue({
       'currencyCode': this.savingProductsTemplate.currency.code || this.currencyData[0].code,
-      'digitsAfterDecimal': this.savingProductsTemplate.currency.code ? this.savingProductsTemplate.currency.decimalPlaces : 2,
-      'inMultiplesOf': this.savingProductsTemplate.currency.inMultiplesOf
+      'digitsAfterDecimal': this.savingProductsTemplate.currency.code ? (this.savingProductsTemplate.currency.code === 'IDR' ? 0 : this.savingProductsTemplate.currency.decimalPlaces) : 2,
+      'inMultiplesOf': this.savingProductsTemplate.currency.inMultiplesOf ? this.savingProductsTemplate.currency.inMultiplesOf : 1
     });
   }
 
