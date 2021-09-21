@@ -93,7 +93,7 @@
 
     <div fxFlexFill>
       <span fxFlex="40%">{{ 'Incorporation Number' | translate }}</span>
-      <span fxFlex="60%">{{ client.clientNonPersonDetails.incorpNumber || 'Not Provided' }}</span>
+      <span fxFlex="60%">{{ client.clientNonPersonDetails.incorpNumber || ( 'Not Provided' | translate ) }}</span>
     </div>
 
     <div fxFlexFill *ngIf="client.clientNonPersonDetails.mainBusinessLineId">
