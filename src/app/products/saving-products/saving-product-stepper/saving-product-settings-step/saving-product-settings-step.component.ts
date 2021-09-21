@@ -25,7 +25,7 @@ export class SavingProductSettingsStepComponent implements OnInit {
     this.taxGroupData = this.savingProductsTemplate.taxGroupOptions;
 
     this.savingProductSettingsForm.patchValue({
-      'minRequiredOpeningBalance': this.savingProductsTemplate.minRequiredOpeningBalance,
+      'minRequiredOpeningBalance': this.savingProductsTemplate.minRequiredOpeningBalance ? this.savingProductsTemplate.minRequiredOpeningBalance : 0,
       'lockinPeriodFrequency': this.savingProductsTemplate.lockinPeriodFrequency,
       'lockinPeriodFrequencyType': this.savingProductsTemplate.lockinPeriodFrequencyType && this.savingProductsTemplate.lockinPeriodFrequencyType.id,
       'withdrawalFeeForTransfers': this.savingProductsTemplate.withdrawalFeeForTransfers,
