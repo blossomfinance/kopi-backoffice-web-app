@@ -87,7 +87,6 @@ export class GlAccountTreeService {
         glAccounts[glAccount.parentId].children.push(glAccounts[glAccount.id]);
       }
     }
-    console.debug("glAccountTree", glAccountTree);
 
     return glAccountTree;
   }
