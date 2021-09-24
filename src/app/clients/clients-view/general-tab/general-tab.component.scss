@@ -6,8 +6,7 @@
     margin:1% auto;
   }
   .summary-container {
-    border: 1px groove;
-    padding: 1%;
+    padding: 1em;
   }
 
   table {
@@ -30,7 +29,8 @@
     }
 
     .account-balance {
-      min-width: 5em;
+      min-width: 5.5em;
+      text-align: center;
     }
 
     .account-action-button {

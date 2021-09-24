@@ -4,10 +4,10 @@
 
   <div>
 
-    <form #formRef="ngForm" [formGroup]="noteForm" fxLayout="row" fxLayoutAlign="start baseline" fxLayoutGap="20px"
+    <form #formRef="ngForm" [formGroup]="noteForm" fxLayout="row" fxLayoutAlign="start baseline" fxLayoutGap="0.5em"
       (ngSubmit)="submit()">
 
-      <mat-form-field fxFlex="calc(90%-20px)">
+      <mat-form-field fxFlex="calc(90%-25px)">
         <textarea formControlName="note" matInput placeholder="{{ 'Write a note...' | translate }}"></textarea>
       </mat-form-field>
 
@@ -31,7 +31,7 @@
         <span>{{ 'Created by' | translate }}: {{clientNote.createdByUsername}}</span><br />
         <span>{{ 'Date' | translate }}: {{clientNote.createdOn | date}}</span>
       </p>
-      <!-- BUG: Possible bugs in the fineract api for deleteNote and editNote -->
+      <!-- BUG: Possible bugs in the fineract backend for deleteNote and editNote -->
       <!-- <div fxLayout="row" fxLayoutAlign="flex-start">
         <button mat-button color="primary" (click)="editNote(clientNote.id,clientNote.note,i)" disabled
           *mifosxHasPermission="'CREATE_CLIENTNOTE'">

@@ -13,7 +13,7 @@ import { ClientsService } from 'app/clients/clients.service';
   templateUrl: './general-tab.component.html',
   styleUrls: ['./general-tab.component.scss']
 })
-export class GeneralTabComponent {
+export class GeneralTabComponent implements OnInit {
 
   /** Open Loan Accounts Columns */
   openLoansColumns: string[] = ['Account No', 'Loan Account', 'Original Loan', 'Loan Balance', 'Amount Paid', 'Type', 'Actions'];
@@ -42,6 +42,8 @@ export class GeneralTabComponent {
   upcomingCharges: any;
   /** Client Summary Data */
   clientSummary: any;
+  /** Total Fund Data */
+  totalFund: number = 0;
 
   /** Show Closed Loan Accounts */
   showClosedLoanAccounts = false;
@@ -83,8 +85,15 @@ export class GeneralTabComponent {
       this.clientid = this.route.parent.snapshot.params['clientId'];
       this.isBaitulMaal = (this.clientid == 2307);
       console.debug('general isBaitulMaal?', this.isBaitulMaal);
-      console.debug('data.clientSummary?', data.clientSummary);
     });
+  }
+
+  ngOnInit() {
+    if (this.savingAccounts.length) {
+      this.savingAccounts.forEach((element: any) => {
+        if (element.accountBalance) this.totalFund += element.accountBalance;
+      })
+    };
   }
 
   /**

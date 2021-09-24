@@ -2,8 +2,15 @@
 
   <mat-card>
 
-    <h2 mat-title *ngIf="transactionType.withdrawal">{{ 'Withdraw Money From Saving Account' | translate }}</h2>
-    <h2 mat-title *ngIf="transactionType.deposit">{{ 'Deposit Money To Saving Account' | translate }}</h2>
+    <div id="savings-header">
+      <h2 mat-title *ngIf="transactionType.withdrawal">{{ 'Withdraw Money From Saving Account' | translate }}</h2>
+      <h2 mat-title *ngIf="transactionType.deposit">{{ 'Deposit Money To Saving Account' | translate }}</h2>
+    </div>
+
+    <div id="maal-header">
+      <h2 mat-title *ngIf="transactionType.withdrawal">{{ 'Withdraw Fund' | translate }}</h2>
+      <h2 mat-title *ngIf="transactionType.deposit">{{ 'Deposit Fund' | translate }}</h2>
+    </div>
 
     <form [formGroup]="savingAccountTransactionForm" (ngSubmit)="submit()">
 
@@ -76,8 +83,9 @@
 
         <mat-card-actions fxLayoutGap="5px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center">
           <button type="button" mat-raised-button [routerLink]="['../../']">{{ 'Cancel' | translate }}</button>
-          <button mat-raised-button color="primary" [disabled]="!savingAccountTransactionForm.valid">{{ 'Confirm' |
-            translate }}</button>
+          <button mat-raised-button color="primary" [disabled]="!savingAccountTransactionForm.valid">
+            {{ 'Confirm' | translate }}
+          </button>
         </mat-card-actions>
 
       </mat-card-content>

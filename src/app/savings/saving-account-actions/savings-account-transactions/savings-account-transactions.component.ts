@@ -73,7 +73,7 @@ export class SavingsAccountTransactionsComponent implements OnInit {
    */
   createSavingAccountTransactionForm() {
     this.savingAccountTransactionForm = this.formBuilder.group({
-      'transactionDate': ['', Validators.required],
+      'transactionDate': [new Date(), Validators.required],
       'transactionAmount': ['', Validators.required],
       'paymentTypeId': [''],
       'note': ['']
