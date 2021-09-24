@@ -5,21 +5,39 @@
   h3{
     margin:1% auto;
   }
-  .performance-history-container {
-    border: 1px solid;
+  .summary-container {
+    border: 1px groove;
     padding: 1%;
   }
 
   table {
     width: 100%;
+
+    td {
+      min-width: 2em;
+    }
+
     td:hover {
       cursor: pointer;
     }
-    .account-action-button{
-      min-width: 26px;
-      padding: 0 6px;
-      margin: 4px;
-      line-height: 25px;
+
+    .account-name {
+      min-width: 4em;
+    }
+
+    .last-active {
+      min-width: 6.2em;
+    }
+
+    .account-balance {
+      min-width: 5em;
+    }
+
+    .account-action-button {
+      min-width: 2em;
+      padding: 0;
+      margin: 0.1em;
+      line-height: 2em;
     }
 
     .select-row:hover {

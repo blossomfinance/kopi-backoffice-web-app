@@ -9,57 +9,70 @@
           <img mat-card-md-image class="profile-image"
             [src]="(clientImage)?clientImage:'assets/images/user_placeholder.png'">
         </div>
-        <div fxLayoutAlign="center center" class="m-b-5">
-          <button class="client-image-button" mat-raised-button (click)="doAction('Upload Image')"
-            matTooltip="Upload Image" *mifosxHasPermission="'CREATE_CLIENTIMAGE'">
-            <i class="fa fa-upload"></i>
-          </button>
-          <button class="client-image-button" mat-raised-button (click)="doAction('Capture Image')"
-            matTooltip="Capture Image" *mifosxHasPermission="'CREATE_CLIENTIMAGE'">
-            <i class="fa fa-camera"></i>
-          </button>
-          <button class="client-image-button" mat-raised-button (click)="doAction('Delete Image')"
-            matTooltip="Delete Image" *mifosxHasPermission="'DELETE_CLIENTIMAGE'">
-            <i class="fa fa-trash"></i>
-          </button>
-          <br>
-        </div>
-        <p (click)="doAction('View Signature')" class="signature">{{ 'View Signature' | translate }}</p>
+        <span>
+          <div fxLayoutAlign="center center" class="m-b-5">
+            <button class="client-image-button" mat-raised-button (click)="doAction('Upload Image')"
+              matTooltip="Upload Image" *mifosxHasPermission="'CREATE_CLIENTIMAGE'">
+              <i class="fa fa-upload"></i>
+            </button>
+            <!-- TODO: Capture image straight from the web app -->
+            <!-- <button class="client-image-button" mat-raised-button (click)="doAction('Capture Image')"
+              matTooltip="Capture Image" *mifosxHasPermission="'CREATE_CLIENTIMAGE'">
+              <i class="fa fa-camera"></i>
+            </button> -->
+            <button class="client-image-button" mat-raised-button (click)="doAction('Delete Image')"
+              matTooltip="Delete Image" *mifosxHasPermission="'DELETE_CLIENTIMAGE'">
+              <i class="fa fa-trash"></i>
+            </button>
+            <br>
+          </div>
+          <p (click)="doAction('View Signature')" class="signature" *ngIf="!isBaitulMaal">
+            {{ 'View Signature' | translate }}
+          </p>
+        </span>
       </div>
 
       <div class="mat-typography client-card-title">
-
-        <mat-card-title>
-          <h3>
-            <i class="fa fa-stop" [ngClass]="clientViewData.status.code|statusLookup"
-              [matTooltip]="clientViewData.status.value"></i>
-            {{ 'Client Name' | translate }} : {{clientViewData.displayName}}
-          </h3>
+        <mat-card-title fxLayoutAlign="flex-start" *ngIf="isBaitulMaal">
+          <h1>
+            Baitul Maal
+          </h1>
         </mat-card-title>
 
-        <mat-card-subtitle>
-          <p>
-            {{ 'Account No' | translate }} : {{clientViewData.accountNo}} |
-            {{ 'External ID' | translate }} : {{clientViewData.externalId}} | {{ 'Staff' | translate }} :
-            {{clientViewData.staffName
-            || ('Unassigned' | translate) }}<br />
-            {{ 'Activation Date' | translate }} :
-            {{ (clientViewData.activationDate) ? (clientViewData.activationDate|date) : ('Not Activated' | translate)
-            }}<br />
-            {{ 'Member of' | translate }} :
-            <span *ngFor="let group of clientViewData.groups">
-              <a>{{ group.name }}</a>&nbsp;
-            </span>
-            <span *ngIf="!clientViewData.groups.length">{{ 'Unassigned' | translate }}</span>
-            <br />
-          </p>
-        </mat-card-subtitle>
+        <span *ngIf="!isBaitulMaal">
+          <mat-card-title>
+            <h3>
+              <i class="fa fa-stop" [ngClass]="clientViewData.status.code|statusLookup"
+                [matTooltip]="clientViewData.status.value"></i>
+              {{ 'Client Name' | translate }} : {{clientViewData.displayName}}
+            </h3>
+          </mat-card-title>
+
+          <mat-card-subtitle>
+            <p>
+              {{ 'Client No' | translate }} : {{clientViewData.accountNo}} |
+              {{ 'External ID' | translate }} : {{clientViewData.externalId}} | {{ 'Staff' | translate }} :
+              {{clientViewData.staffName
+              || ('Unassigned' | translate) }}<br />
+              {{ 'Activation Date' | translate }} :
+              {{ (clientViewData.activationDate) ? (clientViewData.activationDate|date) : ('Not Activated' | translate)
+              }}<br />
+              {{ 'Member of' | translate }} :
+              <span *ngFor="let group of clientViewData.groups">
+                <a>{{ group.name }}</a>&nbsp;
+              </span>
+              <span *ngIf="!clientViewData.groups.length">{{ 'Unassigned' | translate }}</span>
+              <br />
+            </p>
+          </mat-card-subtitle>
+        </span>
 
       </div>
 
     </mat-card-title-group>
 
-    <mat-card-actions fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="10px" class="client-actions">
+    <mat-card-actions fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="10px" class="client-actions"
+      *ngIf="!isBaitulMaal">
 
       <span *mifosxHasPermission="'UPDATE_CLIENT'">
         <button mat-raised-button [routerLink]="['edit']">
@@ -69,17 +82,23 @@
       <button mat-raised-button [matMenuTriggerFor]="Applications">
         <i class="fa fa-file"></i>{{ 'Applications' | translate }}</button>
       <mat-menu #Applications="matMenu">
-        <button mat-menu-item [routerLink]="['loans-accounts', 'create']">{{ 'New Loan Account' | translate }}</button>
-        <button mat-menu-item [routerLink]="['savings-accounts', 'create']">{{ 'New Savings Account' | translate
-          }}</button>
-        <button mat-menu-item *mifosxHasPermission="'CREATE_SHAREACCOUNT'"
-          [routerLink]="['shares-accounts', 'create']">{{ 'New Share Account' | translate }}</button>
+        <button mat-menu-item [routerLink]="['loans-accounts', 'create']">
+          {{ 'New Loan Account' | translate }}
+        </button>
+        <button mat-menu-item [routerLink]="['savings-accounts', 'create']">
+          {{ 'New Savings Account' | translate }}
+        </button>
+        <button mat-menu-item *mifosxHasPermission="'CREATE_SHAREACCOUNT'" [routerLink]="['shares-accounts', 'create']">
+          {{ 'New Share Account' | translate }}
+        </button>
         <button mat-menu-item *mifosxHasPermission="'CREATE_RECURRINGDEPOSITACCOUNT'"
-          [routerLink]="['recurringdeposits', 'create-recurring-deposits-account']">{{ 'New Recurring Deposit Account' |
-          translate }}
+          [routerLink]="['recurringdeposits', 'create-recurring-deposits-account']">
+          {{ 'New Recurring Deposit Account' | translate }}
         </button>
         <button mat-menu-item *mifosxHasPermission="'CREATE_FIXEDDEPOSITACCOUNT'"
-          [routerLink]="['fixed-deposits-accounts', 'create']">{{ 'New Fixed Deposits Account' | translate }}</button>
+          [routerLink]="['fixed-deposits-accounts', 'create']">
+          {{ 'New Fixed Deposits Account' | translate }}
+        </button>
       </mat-menu>
 
       <button mat-raised-button [matMenuTriggerFor]="Actions">
@@ -145,7 +164,8 @@
           *mifosxHasPermission="'READ_STANDINGINSTRUCTION'">{{ 'Create Standing Instructions' | translate }}</button>
         <span *ngIf="clientViewData.status.value!='Transfer on hold'">
           <button mat-menu-item (click)="doAction('View Standing Instructions')"
-            *mifosxHasPermission="'CREATE_STANDINGINSTRUCTION'">{{ 'View Standing Instructions' | translate }}</button>
+            *mifosxHasPermission="'CREATE_STANDINGINSTRUCTION'">{{ 'View Standing Instructions' | translate
+            }}</button>
         </span>
         <button mat-menu-item (click)="doAction('Create Self Service User')">
           {{ 'Create Self Service User' | translate }}
@@ -158,23 +178,25 @@
 
   <mat-card-content>
     <nav mat-tab-nav-bar class="navigation-tabs">
-      <!-- <a mat-tab-link [routerLink]="['./general']" routerLinkActive #general="routerLinkActive"
+      <a mat-tab-link [routerLink]="['./general']" routerLinkActive #general="routerLinkActive"
         [active]="general.isActive">
         {{ 'General' | translate }}
-      </a> -->
-      <a mat-tab-link [routerLink]="['./address']" routerLinkActive #address="routerLinkActive"
-        [active]="address.isActive">
-        <!-- [active]="address.isActive" *ngIf="clientTemplateData.isAddressEnabled"> -->
-        {{ 'Address' | translate }}
       </a>
-      <a mat-tab-link [routerLink]="['./family-members']" routerLinkActive #familyMembers="routerLinkActive"
-        [active]="familyMembers.isActive">
-        {{ 'Family Members' | translate }}
-      </a>
-      <a mat-tab-link [routerLink]="['./identities']" routerLinkActive #identities="routerLinkActive"
-        [active]="identities.isActive" *mifosxHasPermission="'READ_CLIENTIDENTIFIER'">
-        {{ 'Identities' | translate }}
-      </a>
+      <span *ngIf="!isBaitulMaal">
+        <a mat-tab-link [routerLink]="['./address']" routerLinkActive #address="routerLinkActive"
+          [active]="address.isActive">
+          <!-- [active]="address.isActive" *ngIf="clientTemplateData.isAddressEnabled"> -->
+          {{ 'Address' | translate }}
+        </a>
+        <a mat-tab-link [routerLink]="['./family-members']" routerLinkActive #familyMembers="routerLinkActive"
+          [active]="familyMembers.isActive">
+          {{ 'Family Members' | translate }}
+        </a>
+        <a mat-tab-link [routerLink]="['./identities']" routerLinkActive #identities="routerLinkActive"
+          [active]="identities.isActive" *mifosxHasPermission="'READ_CLIENTIDENTIFIER'">
+          {{ 'Identities' | translate }}
+        </a>
+      </span>
       <a mat-tab-link [routerLink]="['./documents']" routerLinkActive #documents="routerLinkActive"
         [active]="documents.isActive" *mifosxHasPermission="'READ_DOCUMENT'">
         {{ 'Documents' | translate }}
