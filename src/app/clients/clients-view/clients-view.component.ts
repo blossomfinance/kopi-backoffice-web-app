@@ -27,12 +27,13 @@ export class ClientsViewComponent implements OnInit {
   clientDatatables: any;
   clientImage: any;
   clientTemplateData: any;
+  isBaitulMaal: boolean;
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
-              private clientsService: ClientsService,
-              private _sanitizer: DomSanitizer,
-              public dialog: MatDialog) {
+    private router: Router,
+    private clientsService: ClientsService,
+    private _sanitizer: DomSanitizer,
+    public dialog: MatDialog) {
     this.route.data.subscribe((data: {
       clientViewData: any,
       clientTemplateData: any,
@@ -41,6 +42,7 @@ export class ClientsViewComponent implements OnInit {
       this.clientViewData = data.clientViewData;
       this.clientDatatables = data.clientDatatables;
       this.clientTemplateData = data.clientTemplateData;
+      this.isBaitulMaal = (data.clientViewData.displayName === 'Baitul Maal');
     });
   }
 
@@ -48,8 +50,9 @@ export class ClientsViewComponent implements OnInit {
     this.clientsService.getClientProfileImage(this.clientViewData.id).subscribe(
       (base64Image: any) => {
         this.clientImage = this._sanitizer.bypassSecurityTrustResourceUrl(base64Image);
-      }, (error: any) => {}
+      }, (error: any) => { }
     );
+    console.debug('view isBaitulMaal?', this.isBaitulMaal);
   }
 
   /**
@@ -76,7 +79,7 @@ export class ClientsViewComponent implements OnInit {
       case 'Client Screen Reports':
         this.router.navigate([`actions/${name}`], { relativeTo: this.route });
         break;
-       case 'Unassign Staff':
+      case 'Unassign Staff':
         this.unassignStaff();
         break;
       case 'Delete':
@@ -118,7 +121,7 @@ export class ClientsViewComponent implements OnInit {
    */
   reload() {
     const url: string = this.router.url;
-    this.router.navigateByUrl(`/clients`, {skipLocationChange: true})
+    this.router.navigateByUrl(`/clients`, { skipLocationChange: true })
       .then(() => this.router.navigate([url]));
   }
 

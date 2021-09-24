@@ -27,7 +27,7 @@ export class NotesTabComponent implements OnInit {
   /** Username */
   username: string;
   /** Client Notes */
-  clientNotes: any;
+  clientNotes: Array<any>;
   /** Note Form */
   noteForm: FormGroup;
 
@@ -52,7 +52,6 @@ export class NotesTabComponent implements OnInit {
     this.clientId = this.route.parent.snapshot.params['clientId'];
     this.route.data.subscribe((data: { clientNotes: any }) => {
       this.clientNotes = data.clientNotes;
-      console.debug(this.clientNotes);
     });
   }
 
@@ -70,14 +69,14 @@ export class NotesTabComponent implements OnInit {
   }
 
   /**
-   * Edits a client note.
+   * Edits a client note. TODO: possible bugs in the fineract backend.
    * @param {string} noteId Note Id
    * @param {string} noteContent Note Content
    * @param {number} index Index
    */
   editNote(noteId: string, noteContent: string, index: number) {
     const editNoteDialogRef = this.dialog.open(EditNotesDialogComponent, {
-      data: { noteContent: noteContent }
+      data: { noteContent }
     });
     editNoteDialogRef.afterClosed().subscribe((response: { editForm: any }) => {
       if (response.editForm) {
@@ -89,12 +88,11 @@ export class NotesTabComponent implements OnInit {
   }
 
   /**
-   * Deletes a client note.
+   * Deletes a client note. TODO: possible bugs in the fineract backend.
    * @param {string} noteId Note Id
    * @param {number} index Index
    */
   deleteNote(noteId: string, index: number) {
-    console.debug(noteId, index);
     const deleteNoteDialogRef = this.dialog.open(DeleteDialogComponent, {
       data: { deleteContext: `Note id:${noteId}` }
     });

@@ -8,7 +8,7 @@ import env from './.env';
 
 export const environment = {
   production: false,
-  version: env.mifos_x_version + '-dev',
+  version: env.koppi_kantor_version + '-dev',
   fineractPlatformTenantId: 'default',
   // For connecting to server running elsewhere update the tenant identifier
   baseApiUrl: JSON.parse(localStorage.getItem('koppiKantorServerURL')) || 'https://localhost:8443', // 'https://api.koperasipintar.org:8443',

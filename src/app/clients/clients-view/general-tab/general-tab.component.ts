@@ -56,6 +56,8 @@ export class GeneralTabComponent {
 
   /** Client Id */
   clientid: any;
+  /** is Baitul Maal? */
+  isBaitulMaal: boolean;
 
   /**
    * @param {ActivatedRoute} route Activated Route
@@ -67,7 +69,11 @@ export class GeneralTabComponent {
     private clientService: ClientsService,
     private router: Router
   ) {
-    this.route.data.subscribe((data: { clientAccountsData: any, clientChargesData: any, clientSummary: any }) => {
+    this.route.data.subscribe((data: {
+      clientAccountsData: any,
+      clientChargesData: any,
+      clientSummary: any
+    }) => {
       this.clientAccountData = data.clientAccountsData;
       this.savingAccounts = data.clientAccountsData.savingsAccounts;
       this.loanAccounts = data.clientAccountsData.loanAccounts;
@@ -75,7 +81,10 @@ export class GeneralTabComponent {
       this.upcomingCharges = data.clientChargesData.pageItems;
       this.clientSummary = data.clientSummary[0];
       this.clientid = this.route.parent.snapshot.params['clientId'];
-  });
+      this.isBaitulMaal = (this.clientid == 2307);
+      console.debug('general isBaitulMaal?', this.isBaitulMaal);
+      console.debug('data.clientSummary?', data.clientSummary);
+    });
   }
 
   /**
@@ -119,7 +128,7 @@ export class GeneralTabComponent {
    * @param clientId Selected Client Id.
    */
   waiveCharge(chargeId: string, clientId: string) {
-    const charge = { clientId: clientId.toString(), resourceType: chargeId};
+    const charge = { clientId: clientId.toString(), resourceType: chargeId };
     this.clientService.waiveClientCharge(charge).subscribe(() => {
       this.getChargeData(clientId);
     });
