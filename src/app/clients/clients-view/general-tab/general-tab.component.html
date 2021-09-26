@@ -1,10 +1,11 @@
 <!-- BAITUL MAAL Client View -->
 <div class="tab-container mat-typography" *ngIf="isBaitulMaal">
 
-  <div fxLayout="row" fxLayoutGap="32px" class="summary-container">
-    <p>
-      {{ 'Total Fund' | translate }} :{{ clientSummary?.totalSavings }} <br />
-    </p>
+  <div fxLayoutAlign="center center" class="summary-container">
+    <h4>
+      {{ 'Total Fund' | translate }} :
+      {{ totalFund ? 'Rp. ' + totalFund.toLocaleString('id-ID') : '-' }}
+    </h4>
   </div>
 
   <!-- Accounts Table -->
@@ -21,23 +22,27 @@
 
     <ng-container matColumnDef="Account No">
       <th mat-header-cell *matHeaderCellDef> {{ 'Number of' | translate }} </th>
-      <td mat-cell *matCellDef="let element"> <i class="fa fa-stop" [ngClass]="element.status.code|statusLookup"></i>
-        {{ element.accountNo * 1 }} </td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.accountNo * 1 }} <i class="fa fa-stop" [ngClass]="element.status.code|statusLookup"></i>
+      </td>
+
     </ng-container>
 
     <ng-container matColumnDef="Saving Account">
       <th mat-header-cell *matHeaderCellDef> {{ 'Name' | translate }} </th>
-      <td mat-cell *matCellDef="let element" class="account-name"> {{element.productName}} </td>
+      <td mat-cell *matCellDef="let element" class="account-name"> {{ element.productName }} </td>
     </ng-container>
 
     <ng-container matColumnDef="Last Active">
       <th mat-header-cell *matHeaderCellDef> {{ 'Last Active' | translate }} </th>
-      <td mat-cell *matCellDef="let element" class="last-active"> {{element.lastActiveTransactionDate | date}} </td>
+      <td mat-cell *matCellDef="let element" class="last-active"> {{ element.lastActiveTransactionDate | date }} </td>
     </ng-container>
 
     <ng-container matColumnDef="Balance">
       <th mat-header-cell *matHeaderCellDef> {{ 'Balance' | translate }} </th>
-      <td mat-cell *matCellDef="let element" class="account-balance"> {{element.accountBalance}} </td>
+      <td mat-cell *matCellDef="let element" class="account-balance">
+        {{ element.accountBalance ? element.accountBalance.toLocaleString('id-ID') : '-' }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="Actions">
