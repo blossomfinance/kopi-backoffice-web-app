@@ -39,6 +39,10 @@ export class SavingsAccountTransactionsComponent implements OnInit {
   transactionCommand: string;
   /** saving account's Id */
   savingAccountId: string;
+  /** Client Id */
+  clientid: any;
+  /** is Baitul Maal? */
+  isBaitulMaal: boolean;
 
   /**
    * Retrieves the Saving Account transaction template data from `resolve`.
@@ -59,6 +63,8 @@ export class SavingsAccountTransactionsComponent implements OnInit {
     this.transactionCommand = this.route.snapshot.params['name'].toLowerCase();
     this.transactionType[this.transactionCommand] = true;
     this.savingAccountId = this.route.parent.snapshot.params['savingAccountId'];
+    this.clientid = this.route.parent.snapshot.params['clientId'];
+    this.isBaitulMaal = (this.clientid == 2307);
   }
 
   /**
@@ -76,7 +82,7 @@ export class SavingsAccountTransactionsComponent implements OnInit {
       'transactionDate': [new Date(), Validators.required],
       'transactionAmount': ['', Validators.required],
       'paymentTypeId': [''],
-      'note': ['']
+      'note': ['Donatur: \nWA: \nAlamat: \nSosmed: ']
     });
   }
 

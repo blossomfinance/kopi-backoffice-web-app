@@ -2,12 +2,12 @@
 
   <mat-card>
 
-    <div id="savings-header">
+    <div id="savings-header" *ngIf="!isBaitulMaal">
       <h2 mat-title *ngIf="transactionType.withdrawal">{{ 'Withdraw Money From Saving Account' | translate }}</h2>
       <h2 mat-title *ngIf="transactionType.deposit">{{ 'Deposit Money To Saving Account' | translate }}</h2>
     </div>
 
-    <div id="maal-header">
+    <div id="maal-header" *ngIf="isBaitulMaal">
       <h2 mat-title *ngIf="transactionType.withdrawal">{{ 'Withdraw Fund' | translate }}</h2>
       <h2 mat-title *ngIf="transactionType.deposit">{{ 'Deposit Fund' | translate }}</h2>
     </div>
@@ -44,26 +44,23 @@
           </mat-select>
         </mat-form-field>
 
-        <div fxLayoutGap="5px" fxLayout="row" fxLayout.xs="column">
-          <mat-label fxFlexAlign="center">{{ 'Show Payment Details' | translate }}</mat-label>
-          <button type="button" mat-mini-fab color="primary" (click)="addPaymentDetails()">
+        <mat-form-field>
+          <mat-label>{{ 'Notes' | translate }}</mat-label>
+          <textarea class="note-text-area" formControlName="note" matInput>
+          </textarea>
+        </mat-form-field>
+
+        <div class="action-button">
+          <button type="button" mat-raised-button color="primary" (click)="addPaymentDetails()"
+            matTooltip="{{ 'Add Details' | translate }}">
             <fa-icon [icon]="!addPaymentDetailsFlag ? 'plus-circle' : 'minus-circle'" size="lg"></fa-icon>
+            <span class="button-text">&nbsp;&nbsp;{{ 'Details' | translate }}</span>
           </button>
         </div>
 
         <mat-form-field *ngIf="savingAccountTransactionForm.controls['accountNumber']">
-          <mat-label>{{ 'Account Number' | translate }}</mat-label>
+          <mat-label>{{ 'Account ID' | translate }}</mat-label>
           <input type="number" formControlName="accountNumber" matInput />
-        </mat-form-field>
-
-        <mat-form-field *ngIf="savingAccountTransactionForm.controls['checkNumber']">
-          <mat-label>{{ 'Cheque' | translate }}</mat-label>
-          <input type="number" formControlName="checkNumber" matInput />
-        </mat-form-field>
-
-        <mat-form-field *ngIf="savingAccountTransactionForm.controls['routingCode']">
-          <mat-label>{{ 'Routing Code' | translate }}</mat-label>
-          <input formControlName="routingCode" matInput />
         </mat-form-field>
 
         <mat-form-field *ngIf="savingAccountTransactionForm.controls['receiptNumber']">
@@ -76,9 +73,14 @@
           <input formControlName="bankNumber" matInput />
         </mat-form-field>
 
-        <mat-form-field>
-          <mat-label>{{ 'Notes' | translate }}</mat-label>
-          <textarea formControlName="note" matInput></textarea>
+        <mat-form-field *ngIf="savingAccountTransactionForm.controls['checkNumber']">
+          <mat-label>{{ 'Cheque' | translate }}</mat-label>
+          <input type="number" formControlName="checkNumber" matInput />
+        </mat-form-field>
+
+        <mat-form-field *ngIf="savingAccountTransactionForm.controls['routingCode']">
+          <mat-label>{{ 'Routing Code' | translate }}</mat-label>
+          <input formControlName="routingCode" matInput />
         </mat-form-field>
 
         <mat-card-actions fxLayoutGap="5px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center">

@@ -1,4 +1,18 @@
 .container {
   max-width: 100%;
   width: 37rem;
+  .action-button {
+    margin: 0.5rem;
+    button {
+      min-width: 6em;
+      @media screen and (max-width: 300px) {
+        .button-text {
+          display: none;
+        }
+      }
+    }
+  }
+  .note-text-area {
+    min-height: 4.5em;
+  }
 }
