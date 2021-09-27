@@ -136,8 +136,18 @@
           </mat-form-field>
 
           <mat-form-field fxFlex="48%">
-            <mat-label>{{ 'Account Number' | translate }}</mat-label>
+            <mat-label>{{ 'Account ID' | translate }}</mat-label>
             <input matInput formControlName="accountNumber">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="48%">
+            <mat-label>{{ 'Receipt Number' | translate }}</mat-label>
+            <input matInput formControlName="receiptNumber">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="48%">
+            <mat-label>{{ 'Bank' | translate }}</mat-label>
+            <input matInput formControlName="bankNumber">
           </mat-form-field>
 
           <mat-form-field fxFlex="48%">
@@ -150,18 +160,8 @@
             <input matInput formControlName="routingCode">
           </mat-form-field>
 
-          <mat-form-field fxFlex="48%">
-            <mat-label>{{ 'Receipt Number' | translate }}</mat-label>
-            <input matInput formControlName="receiptNumber">
-          </mat-form-field>
-
-          <mat-form-field fxFlex="48%">
-            <mat-label>{{ 'Bank Number' | translate }}</mat-label>
-            <input matInput formControlName="bankNumber">
-          </mat-form-field>
-
           <mat-form-field fxFlex="98%">
-            <mat-label>{{ 'Comments' | translate }}</mat-label>
+            <mat-label>{{ 'Notes' | translate }}</mat-label>
             <textarea matInput formControlName="comments"></textarea>
           </mat-form-field>
 

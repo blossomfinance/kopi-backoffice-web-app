@@ -39,20 +39,20 @@ export class CreateJournalEntryComponent implements OnInit {
    * @param {Router} router Router for navigation.
    */
   constructor(private formBuilder: FormBuilder,
-              private accountingService: AccountingService,
-              private route: ActivatedRoute,
-              private router: Router) {
+    private accountingService: AccountingService,
+    private route: ActivatedRoute,
+    private router: Router) {
     this.route.data.subscribe((data: {
-        offices: any,
-        currencies: any,
-        paymentTypes: any,
-        glAccounts: any
-      }) => {
-        this.officeData = data.offices;
-        this.currencyData = data.currencies.selectedCurrencyOptions;
-        this.paymentTypeData = data.paymentTypes;
-        this.glAccountData = data.glAccounts;
-      });
+      offices: any,
+      currencies: any,
+      paymentTypes: any,
+      glAccounts: any
+    }) => {
+      this.officeData = data.offices;
+      this.currencyData = data.currencies.selectedCurrencyOptions;
+      this.paymentTypeData = data.paymentTypes;
+      this.glAccountData = data.glAccounts;
+    });
   }
 
   /**
@@ -68,11 +68,11 @@ export class CreateJournalEntryComponent implements OnInit {
   createJournalEntryForm() {
     this.journalEntryForm = this.formBuilder.group({
       'officeId': ['', Validators.required],
-      'currencyCode': ['', Validators.required],
+      'currencyCode': [this.currencyData.length ? this.currencyData[0].code : '', Validators.required],
       'debits': this.formBuilder.array([this.createAffectedGLEntryForm()]),
       'credits': this.formBuilder.array([this.createAffectedGLEntryForm()]),
       'referenceNumber': [''],
-      'transactionDate': ['', Validators.required],
+      'transactionDate': [new Date(), Validators.required],
       'paymentTypeId': [''],
       'accountNumber': [''],
       'checkNumber': [''],

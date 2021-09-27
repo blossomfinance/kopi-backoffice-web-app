@@ -19,7 +19,6 @@ export class KeyboardShortcutsConfiguration {
 
     makeCombination() {
         const i18n: any = this.translate;
-        console.debug(i18n);
         this.buttonsArray = [
             // Navigation Page - alt + n
             {

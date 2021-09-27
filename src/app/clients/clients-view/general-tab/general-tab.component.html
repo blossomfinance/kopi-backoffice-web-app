@@ -21,7 +21,7 @@
     [dataSource]="savingAccounts|accountsFilter:'saving':'open':'isSavings'">
 
     <ng-container matColumnDef="Account No">
-      <th mat-header-cell *matHeaderCellDef> {{ 'Number of' | translate }} </th>
+      <th mat-header-cell *matHeaderCellDef> {{ 'No.' | translate }} </th>
       <td mat-cell *matCellDef="let element">
         {{ element.accountNo * 1 }} <i class="fa fa-stop" [ngClass]="element.status.code|statusLookup"></i>
       </td>

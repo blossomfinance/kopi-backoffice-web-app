@@ -108,7 +108,7 @@ export class IdentitiesTabComponent {
       })
     ];
     const data = {
-      title: this.translate.instant('Add Client Identifier'),
+      title: 'Add Client Identifier',
       formfields: formfields
     };
     const addIdentifierDialogRef = this.dialog.open(FormDialogComponent, { data });
