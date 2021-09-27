@@ -27,7 +27,7 @@ import { Alert } from './core/alert/alert.model';
 import { KeyboardShortcutsConfiguration } from './keyboards-shortcut-config';
 
 /** Initialize Logger */
-const log = new Logger('MifosX');
+const log = new Logger('Koppi Kantor');
 
 /**
  * Main web app component.
@@ -83,7 +83,6 @@ export class WebAppComponent implements OnInit {
     if (environment.production) {
       Logger.enableProductionMode();
     }
-    log.debug('init');
 
     // Setup translations
     this.translate.setDefaultLang(environment.defaultLanguage);
@@ -139,7 +138,7 @@ export class WebAppComponent implements OnInit {
         verticalPosition: 'top'
       });
     });
-    this.buttonConfig = new KeyboardShortcutsConfiguration();
+    this.buttonConfig = new KeyboardShortcutsConfiguration(this.translate);
 
     // initialize language and date format if they are null.
     if (!localStorage.getItem('koppiKantorLanguage')) {
