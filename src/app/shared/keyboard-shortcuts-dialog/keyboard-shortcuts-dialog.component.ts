@@ -1,6 +1,7 @@
 /** Angular Imports */
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 import { KeyboardShortcutsConfiguration } from '../../keyboards-shortcut-config';
 /**
  * Delete dialog component.
@@ -18,11 +19,13 @@ export class KeyboardShortcutsDialogComponent implements OnInit {
    * @param {MatDialogRef} dialogRef Component reference to dialog.
    * @param {any} data Provides a deleteContext.
    */
-  constructor(public dialogRef: MatDialogRef<KeyboardShortcutsDialogComponent>) { }
+  constructor(
+    public dialogRef: MatDialogRef<KeyboardShortcutsDialogComponent>,
+    private translate: TranslateService) { }
 
   ngOnInit() {
     this.dialogRef.updateSize(`800px`);
-    this.buttonConfig = new KeyboardShortcutsConfiguration();
+    this.buttonConfig = new KeyboardShortcutsConfiguration(this.translate);
   }
 
 }

@@ -1,8 +1,10 @@
+import { TranslateService } from "@ngx-translate/core";
+
 /** Keyboard Shortcuts Button Configuration */
 export class KeyboardShortcutsConfiguration {
 
     buttonsArray: {
-        title: string,
+        title: any,
         ctrlKey: boolean,
         shiftKey: boolean,
         altKey: boolean,
@@ -11,15 +13,17 @@ export class KeyboardShortcutsConfiguration {
         id?: string
     }[];
 
-    constructor() {
+    constructor(private translate: TranslateService) {
         this.makeCombination();
     }
 
     makeCombination() {
+        const i18n: any = this.translate;
+        console.debug(i18n);
         this.buttonsArray = [
             // Navigation Page - alt + n
             {
-                title: 'Navigation Page',
+                title: i18n.instant('Navigation Page'),
                 ctrlKey: false,
                 shiftKey: false,
                 altKey: true,
@@ -28,7 +32,7 @@ export class KeyboardShortcutsConfiguration {
             },
             // Run Report - alt + r
             {
-                title: 'Run Report',
+                title: i18n.instant('Run Report'),
                 ctrlKey: false,
                 shiftKey: false,
                 altKey: true,
@@ -38,12 +42,12 @@ export class KeyboardShortcutsConfiguration {
             },
             // Checker Inbox & Pending Tasks - ctrl + alt + i
             {
-              title: 'Checker Inbox & Pending Tasks',
-              ctrlKey: true,
-              shiftKey: false,
-              altKey: true,
-              key: 'i',
-              route: 'checker-inbox-and-tasks/checker-inbox'
+                title: i18n.instant('Checker Inbox & Pending Tasks'),
+                ctrlKey: true,
+                shiftKey: false,
+                altKey: true,
+                key: 'i',
+                route: 'checker-inbox-and-tasks/checker-inbox'
             },
             // Collection Sheet- ctrl + alt + o
             // {
@@ -56,7 +60,7 @@ export class KeyboardShortcutsConfiguration {
             // },
             // Create Client - ctrl + alt + c
             {
-                title: 'Create Client',
+                title: i18n.instant('Create Client'),
                 ctrlKey: true,
                 shiftKey: false,
                 altKey: true,
@@ -65,7 +69,7 @@ export class KeyboardShortcutsConfiguration {
             },
             // Create Group - ctrl + alt + g
             {
-                title: 'Create Group',
+                title: i18n.instant('Create Group'),
                 ctrlKey: true,
                 shiftKey: false,
                 altKey: true,
@@ -74,7 +78,7 @@ export class KeyboardShortcutsConfiguration {
             },
             // Create Center - ctrl + alt + q
             {
-                title: 'Create Center',
+                title: i18n.instant('Create Center'),
                 ctrlKey: true,
                 shiftKey: false,
                 altKey: true,
@@ -83,7 +87,7 @@ export class KeyboardShortcutsConfiguration {
             },
             // Frequent Posting - ctrl + alt + f
             {
-                title: 'Frequent Posting',
+                title: i18n.instant('Frequent Posting'),
                 ctrlKey: true,
                 shiftKey: false,
                 altKey: true,
@@ -92,7 +96,7 @@ export class KeyboardShortcutsConfiguration {
             },
             // Closure Entries - ctrl + alt + e
             {
-                title: 'Closure Entries',
+                title: i18n.instant('Closure Entries'),
                 ctrlKey: true,
                 shiftKey: false,
                 altKey: true,
@@ -101,7 +105,7 @@ export class KeyboardShortcutsConfiguration {
             },
             // Journal Entry - ctrl + alt + j
             {
-                title: 'Journal Entry',
+                title: i18n.instant('Journal Entry'),
                 ctrlKey: true,
                 shiftKey: false,
                 altKey: true,
@@ -110,7 +114,7 @@ export class KeyboardShortcutsConfiguration {
             },
             // Reports - ctrl + alt + r
             {
-                title: 'Reports',
+                title: i18n.instant('Reports'),
                 ctrlKey: true,
                 shiftKey: false,
                 altKey: true,
@@ -119,7 +123,7 @@ export class KeyboardShortcutsConfiguration {
             },
             // Accounting - ctrl + alt + a
             {
-                title: 'Accounting',
+                title: i18n.instant('Accounting'),
                 ctrlKey: true,
                 shiftKey: false,
                 altKey: true,
@@ -128,7 +132,7 @@ export class KeyboardShortcutsConfiguration {
             },
             // Save/Submit Forms - ctrl + alt + s
             {
-                title: 'Save/Submit Forms',
+                title: i18n.instant('Save/Submit Forms'),
                 ctrlKey: true,
                 shiftKey: false,
                 altKey: true,
@@ -138,7 +142,7 @@ export class KeyboardShortcutsConfiguration {
             },
             // Cancel - ctrl + alt + x
             {
-                title: 'Cancel',
+                title: i18n.instant('Cancel'),
                 ctrlKey: true,
                 shiftKey: false,
                 altKey: true,
@@ -148,7 +152,7 @@ export class KeyboardShortcutsConfiguration {
             },
             // Help - ctrl + alt + h
             {
-                title: 'Help',
+                title: i18n.instant('Help'),
                 ctrlKey: true,
                 shiftKey: false,
                 altKey: true,
@@ -176,7 +180,7 @@ export class KeyboardShortcutsConfiguration {
             // },
             // Logout - ctrl + shift + l
             {
-                title: 'Logout',
+                title: i18n.instant('Logout'),
                 ctrlKey: true,
                 shiftKey: true,
                 altKey: false,
