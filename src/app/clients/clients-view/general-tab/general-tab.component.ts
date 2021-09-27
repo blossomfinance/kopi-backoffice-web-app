@@ -84,12 +84,11 @@ export class GeneralTabComponent implements OnInit {
       this.clientSummary = data.clientSummary[0];
       this.clientid = this.route.parent.snapshot.params['clientId'];
       this.isBaitulMaal = (this.clientid == 2307);
-      console.debug('general isBaitulMaal?', this.isBaitulMaal);
     });
   }
 
   ngOnInit() {
-    if (this.savingAccounts.length) {
+    if (Array.isArray(this.savingAccounts)) {
       this.savingAccounts.forEach((element: any) => {
         if (element.accountBalance) this.totalFund += element.accountBalance;
       })
