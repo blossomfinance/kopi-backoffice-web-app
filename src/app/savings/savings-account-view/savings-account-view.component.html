@@ -11,7 +11,28 @@
         </div>
       </div>
 
-      <div class="mat-typography account-card-title">
+      <div class="mat-typography account-card-title" *ngIf="isBaitulMaal">
+        <mat-card-title>
+          <h3>
+            <i class="fa fa-stop" [ngClass]="savingsAccountData.status.code | statusLookup"
+              [matTooltip]="savingsAccountData.status.value"></i>
+            {{savingsAccountData.savingsProductName}}
+          </h3>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <p>
+            {{ 'Account' | translate }} #: {{savingsAccountData.accountNo}}<br />
+            <span *ngIf="!savingsAccountData.status.rejected && !savingsAccountData.status.submittedAndPendingApproval">
+              {{ 'Current Balance' | translate }}:
+              {{savingsAccountData.currency.displaySymbol}}&nbsp;{{savingsAccountData.summary.accountBalance}}<br />
+              {{ 'Available Balance' | translate }}:
+              {{savingsAccountData.currency.displaySymbol}}&nbsp;{{savingsAccountData.summary.availableBalance}}<br />
+            </span>
+          </p>
+        </mat-card-subtitle>
+      </div>
+
+      <div class="mat-typography account-card-title" *ngIf="!isBaitulMaal">
         <mat-card-title>
           <h3>
             <i class="fa fa-stop" [ngClass]="savingsAccountData.status.code | statusLookup"
@@ -22,7 +43,7 @@
         <mat-card-subtitle>
           <p>
             {{ 'Account' | translate }} #: {{savingsAccountData.accountNo}} | {{entityType}} Name:
-            {{savingsAccountData.clientName || savingsAccountData.groupName}}<br />
+            {{ savingsAccountData.clientName || savingsAccountData.groupName }}<br />
             <span *ngIf="!savingsAccountData.status.rejected && !savingsAccountData.status.submittedAndPendingApproval">
               {{ 'Current Balance' | translate }}:
               {{savingsAccountData.currency.displaySymbol}}&nbsp;{{savingsAccountData.summary.accountBalance}}<br />

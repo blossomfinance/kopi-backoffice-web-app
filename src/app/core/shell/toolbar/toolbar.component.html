@@ -18,7 +18,10 @@
     </a>
 
     <span fxHide.lt-lg="true">
-
+      <a mat-tab-link class="tab-link" [routerLink]="['/clients/2307/general']">
+        <fa-icon class="mr-05" icon="handshake" size="lg"></fa-icon>
+        {{ 'Baitul Maal' | translate }}
+      </a>
       <a mat-tab-link class="tab-link" [routerLink]="['/accounting']">
         <fa-icon class="mr-05" icon="money-bill-alt" size="lg"></fa-icon>
         {{ 'Accounting' | translate }}
@@ -62,10 +65,11 @@
   <button mat-menu-item routerLink="/groups">{{ 'Groups' | translate }}</button>
   <button mat-menu-item routerLink="/centers">{{ 'Centers' | translate }}</button>
   <span fxHide.lg>
+    <button mat-menu-item [routerLink]="['/clients/2307/general']">{{ 'Baitul Maal' | translate }}</button>
     <button mat-menu-item [routerLink]="['/accounting']">{{ 'Accounting' | translate }}</button>
     <button mat-menu-item [matMenuTriggerFor]="reportsMenu">{{ 'Reports' | translate }}</button>
     <button mat-menu-item [matMenuTriggerFor]="adminMenu">{{ 'Admin' | translate }}</button>
-    <!-- <button mat-menu-item [matMenuTriggerFor]="selfServiceMenu">{{ 'Self Service' | translate }}</button> -->
+    <button mat-menu-item [matMenuTriggerFor]="selfServiceMenu">{{ 'Self Service' | translate }}</button>
   </span>
 </mat-menu>
 
