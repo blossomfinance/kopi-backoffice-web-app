@@ -11,6 +11,7 @@
         </div>
       </div>
 
+      <!-- Maal Accounts Title -->
       <div class="mat-typography account-card-title" *ngIf="isBaitulMaal">
         <mat-card-title>
           <h3>
@@ -32,6 +33,7 @@
         </mat-card-subtitle>
       </div>
 
+      <!-- Savings Accounts Title -->
       <div class="mat-typography account-card-title" *ngIf="!isBaitulMaal">
         <mat-card-title>
           <h3>
@@ -78,8 +80,65 @@
   </mat-card-header>
 
   <mat-card-content class="content">
+    <!-- Maal Accounts Table -->
+    <div class="maal-account-tables" fxLayout="row" fxLayoutGap="2%" *ngIf="isBaitulMaal">
 
-    <div class="savings-account-tables" fxLayout="row" fxLayoutGap="2%">
+      <div fxFlex="49%"
+        *ngIf="!savingsAccountData.status.rejected && !savingsAccountData.status.submittedAndPendingApproval; else alternateSummary">
+        <h4 class="table-headers">{{ 'Account Summary' | translate }}</h4>
+        <table>
+          <tbody>
+            <tr *ngIf="savingsAccountData.summary.totalWithdrawals">
+              <td>{{ 'Total Withdrawal' | translate }}</td>
+              <td>{{savingsAccountData.currency.displaySymbol}}&nbsp;{{savingsAccountData.summary.totalWithdrawals}}
+              </td>
+            </tr>
+            <tr *ngIf="savingsAccountData.withdrawalFee">
+              <td>{{ 'Withdrawal Fee' | translate }}</td>
+              <td>{{savingsAccountData.currency.displaySymbol}}&nbsp;{{savingsAccountData.withdrawalFee.amount}}</td>
+            </tr>
+            <tr *ngIf="savingsAccountData.lastActiveTransactionDate">
+              <td>{{ 'Last Active Transaction Date' | translate }}</td>
+              <td>{{savingsAccountData.lastActiveTransactionDate | date}}</td>
+            </tr>
+            <tr *ngIf="!(savingsAccountData.subStatus.id === 0)">
+              <td>{{ 'Substatus' | translate }}</td>
+              <td>{{savingsAccountData.subStatus.value}}</td>
+            </tr>
+            <tr *ngIf="savingsAccountData.onHoldFunds">
+              <td>{{ 'On Hold Funds' | translate }}</td>
+              <td><a *mifosxHasPermission="'READ_SAVINGSACCOUNT'">{{savingsAccountData.onHoldFunds}}</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div fxFlex="49%" fxLayout="column" fxLayoutGap="4%">
+
+        <div
+          *ngIf="!savingsAccountData.status.rejected && !savingsAccountData.status.submittedAndPendingApproval; else alternateDetails">
+          <h4 class="table-headers">{{ 'Savings Details' | translate }}</h4>
+          <table>
+            <tbody>
+              <tr *ngIf="savingsAccountData.summary.totalDeposits">
+                <td>{{ 'Total Deposits' | translate }}</td>
+                <td>{{ savingsAccountData.currency.displaySymbol }}&nbsp;{{ savingsAccountData.summary.totalDeposits }}
+                </td>
+              </tr>
+              <tr>
+                <td>{{ 'Currency' | translate }}</td>
+                <td>{{savingsAccountData.currency.name}} [{{savingsAccountData.currency.code}}]</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Savings Accounts Table -->
+    <div class="savings-account-tables" fxLayout="row" fxLayoutGap="2%" *ngIf="!isBaitulMaal">
 
       <div fxFlex="49%"
         *ngIf="!savingsAccountData.status.rejected && !savingsAccountData.status.submittedAndPendingApproval; else alternateSummary">
@@ -311,10 +370,6 @@
         [active]="transactions.isActive">
         {{ 'Transactions' | translate }}
       </a>
-      <a mat-tab-link [routerLink]="['./charges']" routerLinkActive #charges="routerLinkActive"
-        [active]="charges.isActive">
-        {{ 'Charges' | translate }}
-      </a>
       <ng-container *mifosxHasPermission="'READ_SAVINGSACCOUNTCHARGE'">
         <a mat-tab-link [routerLink]="['./standing-instructions']" routerLinkActive
           #standingInstructions="routerLinkActive" [active]="standingInstructions.isActive"
@@ -322,6 +377,10 @@
           {{ 'Standing Instructions' | translate }}
         </a>
       </ng-container>
+      <a mat-tab-link [routerLink]="['./charges']" routerLinkActive #charges="routerLinkActive"
+        [active]="charges.isActive">
+        {{ 'Charges' | translate }}
+      </a>
       <ng-container *ngFor="let savingsDatatable of savingsDatatables">
         <a mat-tab-link *mifosxHasPermission="'READ_' + savingsDatatable.registeredTableName"
           [routerLink]="['./datatables',savingsDatatable.registeredTableName]" routerLinkActive

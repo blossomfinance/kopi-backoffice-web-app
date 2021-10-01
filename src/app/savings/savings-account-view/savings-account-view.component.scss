@@ -45,6 +45,17 @@
       td {
         padding: 3px;
       }
+    }
+    .maal-account-tables {
+      padding: 1%;
+      margin: 1%;
+      .table-headers {
+        margin: 0;
+        padding: 6px;
+      }
+      td {
+        padding: 0.5rem;
+      }
     } 
   }
   i, img:hover {
