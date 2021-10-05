@@ -1,5 +1,5 @@
 /** Angular Imports */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -18,7 +18,8 @@ export class TransactionsTabComponent implements OnInit {
   /** Transactions Data */
   transactionsData: any;
   /** Columns to be displayed in transactions table. */
-  displayedColumns: string[] = ['id', 'transactionDate', 'transactionType', 'debit', 'credit', 'balance', 'viewReciept'];
+  // displayedColumns: string[] = ['id', 'transactionDate', 'transactionType', 'debit', 'credit', 'balance', 'viewReciept'];
+  displayedColumns: string[];
   /** Data source for transactions table. */
   dataSource: MatTableDataSource<any>;
 
@@ -27,15 +28,27 @@ export class TransactionsTabComponent implements OnInit {
    * @param {ActivatedRoute} route Activated Route.
    */
   constructor(private route: ActivatedRoute,
-              private router: Router) {
+    private router: Router) {
     this.route.parent.parent.data.subscribe((data: { savingsAccountData: any }) => {
       this.transactionsData = data.savingsAccountData.transactions?.filter((transaction: any) => !transaction.reversed);
       this.status = data.savingsAccountData.status.value;
     });
   }
 
+  @HostListener('window:resize', ['$event'])
+  getScreenSize() {
+    if (window.innerWidth < 500) {
+      // Only show these columns for smaller screens
+      this.displayedColumns = ['transactionDate', 'transactionType', 'balance'];
+    } else {
+      // Show all columns for larger screens
+      this.displayedColumns = ['id', 'transactionDate', 'transactionType', 'debit', 'credit', 'balance'];
+    }
+  }
+
   ngOnInit() {
     this.dataSource = new MatTableDataSource(this.transactionsData);
+    this.getScreenSize();
   }
 
   /**
@@ -44,7 +57,7 @@ export class TransactionsTabComponent implements OnInit {
    */
   isDebit(transactionType: any) {
     return transactionType.withdrawal === true || transactionType.feeDeduction === true
-            || transactionType.overdraftInterest === true || transactionType.withholdTax === true;
+      || transactionType.overdraftInterest === true || transactionType.withholdTax === true;
   }
 
   /**
@@ -52,7 +65,7 @@ export class TransactionsTabComponent implements OnInit {
    */
   checkStatus() {
     if (this.status === 'Active' || this.status === 'Closed' || this.status === 'Transfer in progress' ||
-       this.status === 'Transfer on hold' || this.status === 'Premature Closed' || this.status === 'Matured') {
+      this.status === 'Transfer on hold' || this.status === 'Premature Closed' || this.status === 'Matured') {
       return true;
     }
     return false;

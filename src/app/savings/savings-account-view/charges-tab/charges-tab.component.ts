@@ -1,5 +1,5 @@
 /** Angular Imports */
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
@@ -39,19 +39,7 @@ export class ChargesTabComponent implements OnInit {
   /** Toggles Charges Table */
   showInactiveCharges = false;
   /** Columns to be displayed in charges table. */
-  displayedColumns: string[] = [
-    'name',
-    'feeOrPenalty',
-    'paymentDueAt',
-    'dueAsOf',
-    'repeatsOn',
-    'calculationType',
-    'due',
-    'paid',
-    'waived',
-    'outstanding',
-    'actions'
-  ];
+  displayedColumns: string[] = ['name', 'feeOrPenalty', 'paymentDueAt', 'dueAsOf', 'repeatsOn', 'calculationType', 'due', 'paid', 'waived', 'outstanding', 'actions'];
 
   /** Charges Table Reference */
   @ViewChild('chargesTable', { static: true }) chargesTableRef: MatTable<Element>;
@@ -66,20 +54,32 @@ export class ChargesTabComponent implements OnInit {
    * @param {SettingsService} settingsService Setting service
    */
   constructor(private savingsService: SavingsService,
-              private route: ActivatedRoute,
-              private datePipe: DatePipe,
-              private router: Router,
-              public dialog: MatDialog,
-              private settingsService: SettingsService) {
+    private route: ActivatedRoute,
+    private datePipe: DatePipe,
+    private router: Router,
+    public dialog: MatDialog,
+    private settingsService: SettingsService) {
     this.route.parent.data.subscribe((data: { savingsAccountData: any }) => {
       this.savingsAccountData = data.savingsAccountData;
       this.chargesData = this.savingsAccountData.charges;
     });
   }
 
+  @HostListener('window:resize', ['$event'])
+  getScreenSize() {
+    if (window.innerWidth < 500) {
+      // Only show these columns for smaller screens
+      this.displayedColumns = ['name', 'paymentDueAt', 'outstanding', 'actions'];
+    } else {
+      // Show all columns for larger screens
+      this.displayedColumns = ['name', 'feeOrPenalty', 'paymentDueAt', 'dueAsOf', 'repeatsOn', 'calculationType', 'due', 'paid', 'waived', 'outstanding', 'actions'];
+    }
+  }
+
   ngOnInit() {
     const activeCharges = this.chargesData ? this.chargesData.filter(charge => charge.isActive) : [];
     this.dataSource = new MatTableDataSource(activeCharges);
+    this.getScreenSize();
   }
 
   /**
@@ -253,7 +253,7 @@ export class ChargesTabComponent implements OnInit {
   private reload() {
     const url: string = this.router.url;
     const refreshUrl: string = this.router.url.slice(0, this.router.url.indexOf('savings-accounts') + 'savings-accounts'.length);
-    this.router.navigateByUrl(refreshUrl, {skipLocationChange: true})
+    this.router.navigateByUrl(refreshUrl, { skipLocationChange: true })
       .then(() => this.router.navigate([url]));
   }
 
