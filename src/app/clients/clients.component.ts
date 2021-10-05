@@ -20,11 +20,9 @@ import { ClientsService } from './clients.service';
 export class ClientsComponent implements OnInit, AfterViewInit {
   @ViewChild('showClosedAccounts', { static: true }) showClosedAccounts: MatCheckbox;
 
-  constructor(private clientsService: ClientsService) {
-    this.getScreenSize();
-  }
+  constructor(private clientsService: ClientsService) { }
 
-  displayedColumns = ['name', 'clientno', 'externalid', 'status', 'mobileNo', 'gender', 'office', 'staff'];
+  displayedColumns: string[] = ['name', 'clientno', 'externalid', 'status', 'mobileNo', 'gender', 'office', 'staff'];
 
   @HostListener('window:resize', ['$event'])
   getScreenSize() {
@@ -46,6 +44,7 @@ export class ClientsComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getClients();
+    this.getScreenSize();
   }
   ngAfterViewInit() {
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);

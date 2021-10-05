@@ -81,39 +81,43 @@
 
   <mat-card-content class="content">
     <!-- Maal Accounts Table -->
-    <div class="maal-account-tables" fxLayout="row" fxLayoutGap="2%" *ngIf="isBaitulMaal">
+    <div class="maal-account-tables" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="2%" *ngIf="isBaitulMaal">
 
-      <div fxFlex="49%"
-        *ngIf="!savingsAccountData.status.rejected && !savingsAccountData.status.submittedAndPendingApproval; else alternateSummary">
-        <h4 class="table-headers">{{ 'Account Summary' | translate }}</h4>
-        <table>
-          <tbody>
-            <tr *ngIf="savingsAccountData.summary.totalWithdrawals">
-              <td>{{ 'Total Withdrawal' | translate }}</td>
-              <td>{{savingsAccountData.currency.displaySymbol}}&nbsp;{{savingsAccountData.summary.totalWithdrawals}}
-              </td>
-            </tr>
-            <tr *ngIf="savingsAccountData.withdrawalFee">
-              <td>{{ 'Withdrawal Fee' | translate }}</td>
-              <td>{{savingsAccountData.currency.displaySymbol}}&nbsp;{{savingsAccountData.withdrawalFee.amount}}</td>
-            </tr>
-            <tr *ngIf="savingsAccountData.lastActiveTransactionDate">
-              <td>{{ 'Last Active Transaction Date' | translate }}</td>
-              <td>{{savingsAccountData.lastActiveTransactionDate | date}}</td>
-            </tr>
-            <tr *ngIf="!(savingsAccountData.subStatus.id === 0)">
-              <td>{{ 'Substatus' | translate }}</td>
-              <td>{{savingsAccountData.subStatus.value}}</td>
-            </tr>
-            <tr *ngIf="savingsAccountData.onHoldFunds">
-              <td>{{ 'On Hold Funds' | translate }}</td>
-              <td><a *mifosxHasPermission="'READ_SAVINGSACCOUNT'">{{savingsAccountData.onHoldFunds}}</a></td>
-            </tr>
-          </tbody>
-        </table>
+      <div fxFlex="49%" fxFlex.xs="100%" fxLayout="column" fxLayoutGap="4%">
+
+        <div
+          *ngIf="!savingsAccountData.status.rejected && !savingsAccountData.status.submittedAndPendingApproval; else alternateSummary">
+          <h4 class="table-headers">{{ 'Account Summary' | translate }}</h4>
+          <table>
+            <tbody>
+              <tr *ngIf="savingsAccountData.summary.totalWithdrawals">
+                <td>{{ 'Total Withdrawals' | translate }}</td>
+                <td>{{savingsAccountData.currency.displaySymbol}}&nbsp;{{savingsAccountData.summary.totalWithdrawals}}
+                </td>
+              </tr>
+              <tr *ngIf="savingsAccountData.withdrawalFee">
+                <td>{{ 'Withdrawal Fee' | translate }}</td>
+                <td>{{savingsAccountData.currency.displaySymbol}}&nbsp;{{savingsAccountData.withdrawalFee.amount}}</td>
+              </tr>
+              <tr *ngIf="savingsAccountData.lastActiveTransactionDate">
+                <td>{{ 'Last Active' | translate }}</td>
+                <td>{{savingsAccountData.lastActiveTransactionDate | date}}</td>
+              </tr>
+              <tr *ngIf="!(savingsAccountData.subStatus.id === 0)">
+                <td>{{ 'Substatus' | translate }}</td>
+                <td>{{savingsAccountData.subStatus.value}}</td>
+              </tr>
+              <tr *ngIf="savingsAccountData.onHoldFunds">
+                <td>{{ 'On Hold Funds' | translate }}</td>
+                <td><a *mifosxHasPermission="'READ_SAVINGSACCOUNT'">{{savingsAccountData.onHoldFunds}}</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
       </div>
 
-      <div fxFlex="49%" fxLayout="column" fxLayoutGap="4%">
+      <div fxFlex="49%" fxFlex.xs="100%" fxLayout="column" fxLayoutGap="4%">
 
         <div
           *ngIf="!savingsAccountData.status.rejected && !savingsAccountData.status.submittedAndPendingApproval; else alternateDetails">

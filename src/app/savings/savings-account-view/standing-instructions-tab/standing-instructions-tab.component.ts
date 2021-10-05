@@ -1,5 +1,5 @@
 /** Angular Imports */
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
@@ -29,15 +29,7 @@ export class StandingInstructionsTabComponent implements OnInit {
   /** Data source for instructions table. */
   dataSource = new MatTableDataSource();
   /** Columns to be displayed in instructions table. */
-  displayedColumns: string[] = [
-    'client',
-    'fromAccount',
-    'beneficiary',
-    'toAccount',
-    'amount',
-    'validity',
-    'actions'
-  ];
+  displayedColumns: string[] = ['client', 'fromAccount', 'beneficiary', 'toAccount', 'amount', 'validity', 'actions'];
 
   /** Instruction Table Reference */
   @ViewChild('instructionsTable', { static: true }) instructionTableRef: MatTable<Element>;
@@ -48,17 +40,29 @@ export class StandingInstructionsTabComponent implements OnInit {
    * @param {SettingsService} settingsService Setting service
    */
   constructor(private route: ActivatedRoute,
-              private savingsService: SavingsService,
-              private dialog: MatDialog,
-              private accountTransfersService: AccountTransfersService,
-              private settingsService: SettingsService) {
+    private savingsService: SavingsService,
+    private dialog: MatDialog,
+    private accountTransfersService: AccountTransfersService,
+    private settingsService: SettingsService) {
     this.route.parent.data.subscribe((data: { savingsAccountData: any }) => {
       this.savingsData = data.savingsAccountData;
     });
   }
 
+  @HostListener('window:resize', ['$event'])
+  getScreenSize() {
+    if (window.innerWidth < 500) {
+      // Only show these columns for smaller screens
+      this.displayedColumns = ['client', 'toAccount', 'amount', 'actions'];
+    } else {
+      // Show all columns for larger screens
+      this.displayedColumns = ['client', 'fromAccount', 'beneficiary', 'toAccount', 'amount', 'validity', 'actions'];
+    }
+  }
+
   ngOnInit() {
     this.getStandingInstructions();
+    this.getScreenSize();
   }
 
   /**
