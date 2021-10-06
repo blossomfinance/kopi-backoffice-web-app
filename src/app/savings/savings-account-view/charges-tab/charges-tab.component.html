@@ -1,9 +1,6 @@
 <div class="tab-container mat-typography">
 
   <div fxLayout="row" fxLayoutAlign="start">
-    <div class="m-b-10">
-      <h3>{{ 'All Charges' | translate }}</h3>
-    </div>
     <div class="action-button m-b-20" *ngIf="this.chargesData">
       <button mat-raised-button color="primary" (click)="toggleCharges()">
         {{showInactiveCharges? ('View Active Charges' | translate) : ('View Inactive Charges' | translate) }}</button>
@@ -25,7 +22,7 @@
       </ng-container>
 
       <ng-container matColumnDef="paymentDueAt">
-        <th mat-header-cell *matHeaderCellDef> {{ 'Payment Due At' | translate }} </th>
+        <th mat-header-cell *matHeaderCellDef> {{ 'Payment Due' | translate }} </th>
         <td mat-cell *matCellDef="let charge"> {{ charge.chargeTimeType.value }} </td>
       </ng-container>
 
