@@ -37,11 +37,11 @@ export class CreateCashierComponent implements OnInit {
    * @param {SettingsService} settingsService Settings Service.
    */
   constructor(private formBuilder: FormBuilder,
-              private route: ActivatedRoute,
-              private router: Router,
-              private datePipe: DatePipe,
-              private organizationService: OrganizationService,
-              private settingsService: SettingsService ) {
+    private route: ActivatedRoute,
+    private router: Router,
+    private datePipe: DatePipe,
+    private organizationService: OrganizationService,
+    private settingsService: SettingsService) {
     this.route.data.subscribe((data: { cashierTemplate: any }) => {
       this.cashierTemplate = data.cashierTemplate;
     });
@@ -79,8 +79,9 @@ export class CreateCashierComponent implements OnInit {
     createCashierForm.locale = this.settingsService.language.code;
     createCashierForm.dateFormat = dateFormat;
     this.organizationService.createCashier(this.cashierTemplate.tellerId, createCashierForm).subscribe((response: any) => {
-      this.router.navigate(['../'], {relativeTo: this.route});
+      this.router.navigate(['../'], { relativeTo: this.route });
     });
+    this.createCashierForm.reset();
   }
 
 }

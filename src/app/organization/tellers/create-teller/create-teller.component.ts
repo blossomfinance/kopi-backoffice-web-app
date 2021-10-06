@@ -39,16 +39,16 @@ export class CreateTellerComponent implements OnInit {
    * @param {DatePipe} datePipe Date Pipe to format date.
    */
   constructor(private formBuilder: FormBuilder,
-              private organizationService: OrganizationService,
-              private settingsService: SettingsService,
-              private route: ActivatedRoute,
-              private router: Router,
-              private datePipe: DatePipe) {
+    private organizationService: OrganizationService,
+    private settingsService: SettingsService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private datePipe: DatePipe) {
     this.route.data.subscribe((data: { offices: any }) => {
       this.officeData = data.offices;
     });
-    this.tellerStatusesData = [{'id': 300, 'code': '300', 'value': 'Active'},
-     {'id': 400, 'code': '400', 'value': 'Inactive'}];
+    this.tellerStatusesData = [{ 'id': 300, 'code': '300', 'value': 'Active' },
+    { 'id': 400, 'code': '400', 'value': 'Inactive' }];
   }
 
   /**
@@ -91,6 +91,7 @@ export class CreateTellerComponent implements OnInit {
     this.organizationService.createTeller(teller).subscribe((response: any) => {
       this.router.navigate(['../', response.resourceId], { relativeTo: this.route });
     });
+    this.tellerForm.reset();
   }
 
 }

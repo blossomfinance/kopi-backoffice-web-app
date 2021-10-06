@@ -46,10 +46,10 @@ export class WorkingDaysComponent implements OnInit {
    * @param {Router} router Router for navigation.
    */
   constructor(private formBuilder: FormBuilder,
-              private route: ActivatedRoute,
-              private organizationService: OrganizationService,
-              private settingsService: SettingsService,
-              private router: Router) {
+    private route: ActivatedRoute,
+    private organizationService: OrganizationService,
+    private settingsService: SettingsService,
+    private router: Router) {
     this.route.data.subscribe((data: { workingDays: any }) => {
       this.workingDaysData = data.workingDays;
     });
@@ -117,6 +117,7 @@ export class WorkingDaysComponent implements OnInit {
     this.organizationService.updateWorkingDays(workingDays).subscribe(response => {
       this.router.navigate(['../'], { relativeTo: this.route });
     });
+    this.workingDaysForm.reset();
   }
 
 }
