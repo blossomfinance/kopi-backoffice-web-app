@@ -66,6 +66,9 @@
       <button mat-raised-button *mifosxHasPermission="'WITHDRAW_SAVINGSACCOUNT'" (click)="doAction('Withdraw')">
         <i class="fa fa-sign-out"></i> {{ 'Withdraw' | translate }}
       </button>
+      <button mat-raised-button (click)="doAction('Back')">
+        {{ 'Back' | translate }}
+      </button>
     </mat-card-actions>
 
     <!-- General Savings Actions -->

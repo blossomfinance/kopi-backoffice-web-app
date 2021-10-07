@@ -6,7 +6,9 @@
 
       <div class="profile-image-container">
         <div>
-          <img mat-card-md-image class="profile-image"
+          <img mat-card-md-image class="profile-image" *ngIf="isBaitulMaal"
+            [src]="(clientImage)?clientImage:'assets/images/charity_placeholder.png'">
+          <img mat-card-md-image class="profile-image" *ngIf="!isBaitulMaal"
             [src]="(clientImage)?clientImage:'assets/images/user_placeholder.png'">
         </div>
         <span>
