@@ -47,13 +47,13 @@ export class CreateGroupComponent implements OnInit, AfterViewInit {
    * @param {SettingsService} settingsService SettingsService
    */
   constructor(private formBuilder: FormBuilder,
-              private route: ActivatedRoute,
-              private router: Router,
-              private clientsService: ClientsService,
-              private groupService: GroupsService,
-              private datePipe: DatePipe,
-              private settingsService: SettingsService) {
-    this.route.data.subscribe( (data: {offices: any} ) => {
+    private route: ActivatedRoute,
+    private router: Router,
+    private clientsService: ClientsService,
+    private groupService: GroupsService,
+    private datePipe: DatePipe,
+    private settingsService: SettingsService) {
+    this.route.data.subscribe((data: { offices: any }) => {
       this.officeData = data.offices;
     });
   }
@@ -69,12 +69,12 @@ export class CreateGroupComponent implements OnInit, AfterViewInit {
    * Subscribes to Clients search filter:
    */
   ngAfterViewInit() {
-    this.clientChoice.valueChanges.subscribe( (value: string) => {
+    this.clientChoice.valueChanges.subscribe((value: string) => {
       if (value.length >= 2) {
         this.clientsService.getFilteredClients('displayName', 'ASC', true, value, this.groupForm.get('officeId').value)
-        .subscribe( (data: any) => {
-          this.clientsData = data.pageItems;
-        });
+          .subscribe((data: any) => {
+            this.clientsData = data.pageItems;
+          });
       }
     });
   }
@@ -165,6 +165,7 @@ export class CreateGroupComponent implements OnInit, AfterViewInit {
     this.groupService.createGroup(group).subscribe((response: any) => {
       this.router.navigate(['../groups']);
     });
+    this.groupForm.reset();
   }
 
 }

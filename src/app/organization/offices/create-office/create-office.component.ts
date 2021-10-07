@@ -37,11 +37,11 @@ export class CreateOfficeComponent implements OnInit {
    * @param {DatePipe} datePipe Date Pipe to format date.
    */
   constructor(private formBuilder: FormBuilder,
-              private organizationService: OrganizationService,
-              private settingsService: SettingsService,
-              private router: Router,
-              private route: ActivatedRoute,
-              private datePipe: DatePipe) {
+    private organizationService: OrganizationService,
+    private settingsService: SettingsService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private datePipe: DatePipe) {
     this.route.data.subscribe((data: { offices: any }) => {
       this.officeData = data.offices;
     });
@@ -80,5 +80,6 @@ export class CreateOfficeComponent implements OnInit {
     this.organizationService.createOffice(office).subscribe(response => {
       this.router.navigate(['../'], { relativeTo: this.route });
     });
+    this.officeForm.reset();
   }
 }

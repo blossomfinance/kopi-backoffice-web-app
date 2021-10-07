@@ -58,7 +58,21 @@
 
     </mat-card-title-group>
 
-    <mat-card-actions class="account-actions">
+    <!-- Maal Actions -->
+    <mat-card-actions class="account-actions" *ngIf="isBaitulMaal">
+      <button mat-raised-button *mifosxHasPermission="'DEPOSIT_SAVINGSACCOUNT'" (click)="doAction('Deposit')">
+        <i class="fa fa-sign-in"></i> {{ 'Deposit' | translate }}
+      </button>
+      <button mat-raised-button *mifosxHasPermission="'WITHDRAW_SAVINGSACCOUNT'" (click)="doAction('Withdraw')">
+        <i class="fa fa-sign-out"></i> {{ 'Withdraw' | translate }}
+      </button>
+      <button mat-raised-button (click)="doAction('Back')">
+        {{ 'Back' | translate }}
+      </button>
+    </mat-card-actions>
+
+    <!-- General Savings Actions -->
+    <mat-card-actions class="account-actions" *ngIf="!isBaitulMaal">
 
       <ng-container *ngFor="let button of buttonConfig.singleButtons">
         <button mat-raised-button *mifosxHasPermission="button.taskPermissionName" (click)="doAction(button.name)">

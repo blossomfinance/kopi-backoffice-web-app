@@ -53,8 +53,8 @@ export class LoginFormComponent implements OnInit {
         this.loginForm.reset();
         this.loginForm.markAsPristine();
         // Angular Material Bug: Validation errors won't get removed on reset.
-        this.loginForm.enable();
         this.loading = false;
+        this.loginForm.enable();
       })).subscribe();
   }
 

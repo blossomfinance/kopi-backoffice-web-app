@@ -1,5 +1,5 @@
 /** Angular Imports */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
 /** rxjs Imports */
@@ -50,17 +50,31 @@ export class BreadcrumbComponent implements OnInit {
   /** Array of breadcrumbs. */
   breadcrumbs: Breadcrumb[];
 
+  showBreadcrumbs: boolean = true;
+
   /**
    * Generates the breadcrumbs.
    * @param {ActivatedRoute} activatedRoute Activated Route.
    * @param {Router} router Router for navigation.
    */
   constructor(private activatedRoute: ActivatedRoute,
-              private router: Router) {
+    private router: Router) {
     this.generateBreadcrumbs();
   }
 
+  @HostListener('window:resize', ['$event'])
+  getScreenSize() {
+    if (window.innerWidth < 500) {
+      // Hide breadcrumbs for smaller screens
+      this.showBreadcrumbs = false;
+    } else {
+      // Show breadcrumbs for larger screens
+      this.showBreadcrumbs = true;
+    }
+  }
+
   ngOnInit() {
+    this.getScreenSize();
   }
 
   /**
