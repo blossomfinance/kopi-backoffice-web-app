@@ -1,8 +1,10 @@
 {
-  "name": "mifosx-web-app",
-  "version": "0.0.0",
-  "description": "MifosX Web App is the default web application built on top of the Fineract platform for the Mifos user community leveraging the popular Angular framework.",
+  "name": "koppi-web-app",
+  "version": "0.1.0",
+  "description": "Koppi Web App is built on top of MifosX Web App, the default web application built on top of the Fineract platform leveraging the popular Angular framework.",
   "keywords": [
+    "koppi",
+    "koperasi",
     "mifos",
     "openmf",
     "fineract",
