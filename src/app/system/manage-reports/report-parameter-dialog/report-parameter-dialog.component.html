@@ -1,4 +1,6 @@
-<h1 mat-dialog-title>{{ data.parameterName ? "Edit" : "Add" }} Report Parameter</h1>
+<h1 mat-dialog-title>
+  {{ data.parameterName ? ( 'Edit' | translate ) : ('Add' | translate) }} {{ 'Report Parameter' | translate }}
+</h1>
 
 <mat-dialog-content>
 
@@ -7,19 +9,19 @@
     <div fxLayout="column">
 
       <mat-form-field>
-        <mat-label>Select allowed parameter</mat-label>
+        <mat-label>{{ 'Select Allowed Parameter' | translate }}</mat-label>
         <mat-select required formControlName="parameterName">
           <mat-option *ngFor="let allowedParameter of data.allowedParameters" [value]="allowedParameter.id">
             {{ allowedParameter.parameterName }}
           </mat-option>
         </mat-select>
         <mat-error *ngIf="reportParameterForm.controls.parameterName.hasError('required')">
-          Report Parameter is <strong>required</strong>
+          {{ 'Report Parameter' | translate }} <strong>{{ 'is required' | translate }}</strong>
         </mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Parameter name passed to Pentaho</mat-label>
+        <mat-label>{{ 'Parameter Name Passed to Pentaho' | translate }}</mat-label>
         <input matInput formControlName="reportParameterName">
       </mat-form-field>
 
@@ -30,7 +32,7 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-raised-button color="primary"
-    [disabled]="!reportParameterForm.valid || reportParameterForm.pristine" (click)="submit()">Submit</button>
+  <button mat-button mat-dialog-close>{{ 'Cancel' | translate }}</button>
+  <button mat-raised-button color="primary" [disabled]="!reportParameterForm.valid || reportParameterForm.pristine"
+    (click)="submit()">{{ 'Submit' | translate }}</button>
 </mat-dialog-actions>
