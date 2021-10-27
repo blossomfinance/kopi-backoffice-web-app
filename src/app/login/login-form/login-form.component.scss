@@ -13,4 +13,10 @@
     float: right;
     margin: 0.5rem 0;
   }
+
+  input:focus { 
+    outline: none !important;
+    border-color: #719ECE;
+    box-shadow: 0 0 10px #719ECE;
+  }
 }
