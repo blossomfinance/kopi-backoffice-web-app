@@ -4,7 +4,7 @@
     Create Surveys
   </button>
 </div>
-  
+
 <div class="container">
 
   <div fxLayout="row">
@@ -13,26 +13,26 @@
       <input matInput (keyup)="applyFilter($event.target.value)">
     </mat-form-field>
   </div>
-  
+
   <div class="mat-elevation-z8">
-    
+
     <table mat-table [dataSource]="dataSource" matSort>
 
       <ng-container matColumnDef="key">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Key </th>
-          <td mat-cell *matCellDef="let survey"> {{ survey.key }} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Key </th>
+        <td mat-cell *matCellDef="let survey"> {{ survey.key }} </td>
       </ng-container>
-        
+
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
         <td mat-cell *matCellDef="let survey"> {{ survey.name }} </td>
       </ng-container>
-  
+
       <ng-container matColumnDef="description">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
         <td mat-cell *matCellDef="let survey"> {{ survey.description }} </td>
       </ng-container>
-  
+
       <ng-container matColumnDef="countryCode">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Country Code </th>
         <td mat-cell *matCellDef="let survey"> {{ survey.countryCode }} </td>
@@ -41,9 +41,10 @@
       <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
         <td mat-cell *matCellDef="let survey">
-            <div [className]="!isActive(survey.validFrom, survey.validTo) === true ? 'disabled' : 'enabled'">
-                <fa-icon matTooltip="{{ !isActive(survey.validFrom, survey.validTo) === true ? 'Disabled' : 'Enabled' }}" matTooltipPosition="right" icon="circle" size="lg"></fa-icon>
-            </div>
+          <div [className]="!isActive(survey.validFrom, survey.validTo) === true ? 'disabled' : 'enabled'">
+            <fa-icon matTooltip="{{ !isActive(survey.validFrom, survey.validTo) === true ? 'Disabled' : 'Enabled' }}"
+              matTooltipPosition="right" icon="circle" size="lg"></fa-icon>
+          </div>
         </td>
       </ng-container>
 
@@ -56,15 +57,16 @@
           <button mat-button *ngIf="isActive(survey.validFrom, survey.validTo)" color="warn">
             <fa-icon icon="lock"></fa-icon>&nbsp;&nbsp;Deactivate
           </button>
-        </td> 
+        </td>
       </ng-container>
-  
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let survey; columns: displayedColumns;" [routerLink]="[survey.id]" class="select-row"></tr>
+      <tr mat-row *matRowDef="let survey; columns: displayedColumns;" [routerLink]="[survey.id]" class="select-row">
+      </tr>
 
     </table>
 
-    <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[10, 100]" showFirstLastButtons></mat-paginator>
 
   </div>
 

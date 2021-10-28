@@ -1,7 +1,8 @@
 <div class="container" *ngIf="provisioningEntry">
 
   <div class="m-b-20" fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
-    <button mat-raised-button color="primary" (click)="createProvisioningJournalEntries()" [disabled]="provisioningEntry.journalEntry" *mifosxHasPermission="'CREATE_JOURNAL_ENTRY'">
+    <button mat-raised-button color="primary" (click)="createProvisioningJournalEntries()"
+      [disabled]="provisioningEntry.journalEntry" *mifosxHasPermission="'CREATE_JOURNAL_ENTRY'">
       <fa-icon icon="plus"></fa-icon>&nbsp;&nbsp;
       Create Journal Entries
     </button>
@@ -79,7 +80,8 @@
 </mat-autocomplete>
 
 <mat-autocomplete autoActiveFirstOption #provisioningCategoryAutocomplete="matAutocomplete">
-  <mat-option *ngFor="let provisioningCategory of filteredProvisioningCategoryData | async" [value]="provisioningCategory.categoryName">
+  <mat-option *ngFor="let provisioningCategory of filteredProvisioningCategoryData | async"
+    [value]="provisioningCategory.categoryName">
     {{ provisioningCategory.categoryName }}
   </mat-option>
 </mat-autocomplete>
@@ -130,6 +132,6 @@
 
   </table>
 
-  <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[10, 100]" showFirstLastButtons></mat-paginator>
 
 </div>

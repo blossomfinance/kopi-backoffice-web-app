@@ -1,6 +1,7 @@
 <div class="container m-b-20" fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
 
-  <button mat-raised-button color="primary" *mifosxHasPermission="'CREATE_STAFF'" [routerLink]="['../', 'organization', 'bulk-import', 'Employees']">
+  <button mat-raised-button color="primary" *mifosxHasPermission="'CREATE_STAFF'"
+    [routerLink]="['../', 'organization', 'bulk-import', 'Employees']">
     <fa-icon icon="upload"></fa-icon>&nbsp;&nbsp;
     Import Employees
   </button>
@@ -34,8 +35,10 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Loan Officer </th>
         <td mat-cell *matCellDef="let employee">
           <div [className]="employee.isLoanOfficer === true ? 'true' : 'false'">
-            <fa-icon *ngIf="employee.isLoanOfficer" icon="check-circle" size="lg" matTooltip="Yes" matTooltipPosition="right"></fa-icon>
-            <fa-icon *ngIf="!employee.isLoanOfficer" icon="times-circle" size="lg" matTooltip="No" matTooltipPosition="right"></fa-icon>
+            <fa-icon *ngIf="employee.isLoanOfficer" icon="check-circle" size="lg" matTooltip="Yes"
+              matTooltipPosition="right"></fa-icon>
+            <fa-icon *ngIf="!employee.isLoanOfficer" icon="times-circle" size="lg" matTooltip="No"
+              matTooltipPosition="right"></fa-icon>
           </div>
         </td>
       </ng-container>
@@ -49,7 +52,8 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
         <td mat-cell *matCellDef="let employee">
           <div [className]="employee.isActive === true ? 'true' : 'false'">
-            <fa-icon matTooltip="{{ employee.isActive === true ? 'Active' : 'Inactive' }}" matTooltipPosition="right" icon="circle" size="lg"></fa-icon>
+            <fa-icon matTooltip="{{ employee.isActive === true ? 'Active' : 'Inactive' }}" matTooltipPosition="right"
+              icon="circle" size="lg"></fa-icon>
           </div>
         </td>
       </ng-container>
@@ -59,7 +63,7 @@
 
     </table>
 
-    <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[10, 100]" showFirstLastButtons></mat-paginator>
 
   </div>
 

@@ -50,7 +50,8 @@
 
           <ng-container matColumnDef="fromDate">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> From Date </th>
-            <td mat-cell *matCellDef="let floatingRatePeriod"> {{ floatingRatePeriod.fromDate | date : 'dd MMMM yyyy' }} </td>
+            <td mat-cell *matCellDef="let floatingRatePeriod"> {{ floatingRatePeriod.fromDate | date : 'dd MMMM yyyy' }}
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="interestRate">
@@ -75,8 +76,7 @@
                 (click)="editFloatingRatePeriod(floatingRatePeriod)">
                 <fa-icon icon="edit" size="lg"></fa-icon>
               </button>
-              <button type="button" color="warn" mat-icon-button
-                (click)="deleteFloatingRatePeriod(floatingRatePeriod)">
+              <button type="button" color="warn" mat-icon-button (click)="deleteFloatingRatePeriod(floatingRatePeriod)">
                 <fa-icon icon="trash" size="lg"></fa-icon>
               </button>
             </td>
@@ -87,13 +87,14 @@
 
         </table>
 
-        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[10, 100]" showFirstLastButtons></mat-paginator>
 
       </mat-card-content>
 
       <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
         <button type="button" mat-raised-button [routerLink]="['../']">Cancel</button>
-        <button mat-raised-button type="submit" color="primary" [disabled]="!floatingRateForm.valid || floatingRateForm.pristine && isFloatingRateFormPristine">
+        <button mat-raised-button type="submit" color="primary"
+          [disabled]="!floatingRateForm.valid || floatingRateForm.pristine && isFloatingRateFormPristine">
           Submit
         </button>
       </mat-card-actions>
