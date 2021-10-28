@@ -15,7 +15,8 @@
   <mat-form-field fxFlex="48%">
     <mat-label>Status</mat-label>
     <mat-select [formControl]="processingResult" (selectionChange)="applyFilter($event.value, 'processingResult')">
-      <mat-option *ngFor="let processingResult of auditTrailSearchTemplateData.processingResults" [value]="processingResult.id">
+      <mat-option *ngFor="let processingResult of auditTrailSearchTemplateData.processingResults"
+        [value]="processingResult.id">
         {{ processingResult.processingResult }}
       </mat-option>
     </mat-select>
@@ -138,17 +139,17 @@
 
     <ng-container matColumnDef="madeOnDate">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Made Date </th>
-      <td mat-cell *matCellDef="let auditTrail"> {{ auditTrail.madeOnDate | date  }} </td>
+      <td mat-cell *matCellDef="let auditTrail"> {{ auditTrail.madeOnDate | date }} </td>
     </ng-container>
 
     <ng-container matColumnDef="checker">
       <th mat-header-cell *matHeaderCellDef> Checker </th>
-      <td mat-cell *matCellDef="let auditTrail"> {{ auditTrail.checker  }} </td>
+      <td mat-cell *matCellDef="let auditTrail"> {{ auditTrail.checker }} </td>
     </ng-container>
 
     <ng-container matColumnDef="checkedOnDate">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Checked Date </th>
-      <td mat-cell *matCellDef="let auditTrail"> {{ auditTrail.checkedOnDate | date  }} </td>
+      <td mat-cell *matCellDef="let auditTrail"> {{ auditTrail.checkedOnDate | date }} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -156,7 +157,7 @@
     </tr>
   </table>
 
-  <mat-paginator [length]="dataSource?.records$ | async" [pageSize]="10" [pageSizeOptions]="[10, 25, 50, 100]"
+  <mat-paginator [length]="dataSource?.records$ | async" [pageSize]="10" [pageSizeOptions]="[10, 100]"
     showFirstLastButtons></mat-paginator>
 
 </div>

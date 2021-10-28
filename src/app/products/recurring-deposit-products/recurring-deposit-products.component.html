@@ -1,5 +1,6 @@
 <div class="container m-b-20" fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
-  <button mat-raised-button color="primary" [routerLink]="['create']" *mifosxHasPermission='"CREATE_RECURRINGDEPOSITPRODUCT"'>
+  <button mat-raised-button color="primary" [routerLink]="['create']"
+    *mifosxHasPermission='"CREATE_RECURRINGDEPOSITPRODUCT"'>
     <fa-icon icon="plus"></fa-icon>&nbsp;&nbsp;
     Create Recurring Deposit Product
   </button>
@@ -33,7 +34,7 @@
 
     </table>
 
-    <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[10, 100]" showFirstLastButtons></mat-paginator>
 
   </div>
 

@@ -4,7 +4,7 @@
 
     <div class="message">
       <i class="fa fa-exclamation-circle alert-check"></i>
-        No repayments and disbursal are available for selected client and meeting date
+      No repayments and disbursal are available for selected client and meeting date
     </div>
 
   </div>
@@ -104,7 +104,8 @@
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
             <td mat-cell *matCellDef="let loan; let i = index">
-              <button mat-raised-button color="primary" (click)="showAndStorePaymentDetails('loans-accounts', loan, i)">Add Payment</button>
+              <button mat-raised-button color="primary"
+                (click)="showAndStorePaymentDetails('loans-accounts', loan, i)">Add Payment</button>
             </td>
           </ng-container>
 
@@ -113,7 +114,7 @@
 
         </table>
 
-        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[10, 100]" showFirstLastButtons></mat-paginator>
 
       </ng-container>
 
@@ -151,7 +152,8 @@
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
             <td mat-cell *matCellDef="let saving; let j = index">
-              <button mat-raised-button color="primary" (click)="showAndStorePaymentDetails('savings', saving, j)">Add Payment</button>
+              <button mat-raised-button color="primary" (click)="showAndStorePaymentDetails('savings', saving, j)">Add
+                Payment</button>
             </td>
           </ng-container>
 
@@ -160,7 +162,7 @@
 
         </table>
 
-        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[10, 100]" showFirstLastButtons></mat-paginator>
 
       </ng-container>
 

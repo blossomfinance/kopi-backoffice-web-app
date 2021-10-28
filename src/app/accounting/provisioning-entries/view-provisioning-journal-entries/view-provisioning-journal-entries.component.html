@@ -33,7 +33,8 @@
 
       <ng-container matColumnDef="glAccountType">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
-        <td mat-cell *matCellDef="let provisioningJournalEntry"> {{ provisioningJournalEntry.glAccountType.value }} </td>
+        <td mat-cell *matCellDef="let provisioningJournalEntry"> {{ provisioningJournalEntry.glAccountType.value }}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="createdByUserName">
@@ -53,12 +54,18 @@
 
       <ng-container matColumnDef="debit">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Debit </th>
-        <td mat-cell *matCellDef="let provisioningJournalEntry"><span *ngIf="provisioningJournalEntry.entryType.value === 'DEBIT'"> {{ (provisioningJournalEntry.currency.displaySymbol || provisioningJournalEntry.currency.code) + ' ' + provisioningJournalEntry.amount }} </span></td>
+        <td mat-cell *matCellDef="let provisioningJournalEntry"><span
+            *ngIf="provisioningJournalEntry.entryType.value === 'DEBIT'"> {{
+            (provisioningJournalEntry.currency.displaySymbol || provisioningJournalEntry.currency.code) + ' ' +
+            provisioningJournalEntry.amount }} </span></td>
       </ng-container>
 
       <ng-container matColumnDef="credit">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Credit </th>
-        <td mat-cell *matCellDef="let provisioningJournalEntry"><span *ngIf="provisioningJournalEntry.entryType.value === 'CREDIT'"> {{ (provisioningJournalEntry.currency.displaySymbol || provisioningJournalEntry.currency.code) + ' ' + provisioningJournalEntry.amount }} </span></td>
+        <td mat-cell *matCellDef="let provisioningJournalEntry"><span
+            *ngIf="provisioningJournalEntry.entryType.value === 'CREDIT'"> {{
+            (provisioningJournalEntry.currency.displaySymbol || provisioningJournalEntry.currency.code) + ' ' +
+            provisioningJournalEntry.amount }} </span></td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -66,7 +73,7 @@
 
     </table>
 
-    <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[10, 100]" showFirstLastButtons></mat-paginator>
 
   </div>
 

@@ -1,8 +1,8 @@
 <div class="container m-b-20" fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
-    <button mat-raised-button color="primary" [routerLink]="['create']" *mifosxHasPermission="'CREATE_SHAREDIVIDEND'">
-      <fa-icon icon="plus"></fa-icon>&nbsp;&nbsp;
-      Initiate Dividend
-    </button>
+  <button mat-raised-button color="primary" [routerLink]="['create']" *mifosxHasPermission="'CREATE_SHAREDIVIDEND'">
+    <fa-icon icon="plus"></fa-icon>&nbsp;&nbsp;
+    Initiate Dividend
+  </button>
 </div>
 
 <div class="container">
@@ -44,11 +44,12 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showDividend(row.id, row.status.value)" class="select-row"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showDividend(row.id, row.status.value)"
+        class="select-row"></tr>
 
     </table>
 
-    <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[10, 100]" showFirstLastButtons></mat-paginator>
 
   </div>
 
